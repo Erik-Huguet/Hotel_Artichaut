@@ -18,12 +18,13 @@ class user extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'lastname',
         'firstname',
         'pseudo',
         'email',
         'phone',
-        'avatar_user',
+        'avatar_user'
     ];
 
     /**
@@ -45,7 +46,11 @@ class user extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function user()
+    {
+        return $this->hasMany(user::class, 'fk_Users_Roles');
+    }
 }
-
-
