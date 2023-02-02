@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('type_chamber', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr_comment',80);
-            $table->longText('describe_fr_comment');
-            $table->string('title_ang_comment', 80);
-            $table->integer('rating')->nullable();
+            $table->string('type');
+            $table->float('price');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('type_chamber');
     }
 };
