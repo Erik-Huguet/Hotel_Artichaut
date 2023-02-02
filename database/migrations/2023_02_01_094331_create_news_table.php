@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('icon_new');
             $table->integer('position_icon_new');
             $table->timestamps();
-            $table->string('title_fr_new');
         });
     }
 
