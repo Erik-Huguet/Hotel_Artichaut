@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
+            $table->string('title_fr_comment',80);
+            $table->longText('describe_fr_comment');
+            $table->string('title_ang_comment', 80);
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }
