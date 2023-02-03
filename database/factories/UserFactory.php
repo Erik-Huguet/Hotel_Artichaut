@@ -5,9 +5,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\user>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
@@ -18,6 +19,8 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $arrayValues = [1, 2, 3];
+
         return [
             'lastname' => fake()->lastname(),
             'firstname'=> fake()->firstName(),
@@ -25,7 +28,8 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'phone'=> fake()->phoneNumber(10),
             'avatar_user'=> fake()->emoji(),
-            'password'=> '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password'=> fake()->password(10,20), // password
+            'fk_Users_Roles'=> fake()->randomElement($arrayValues),
         ];
     }
 
