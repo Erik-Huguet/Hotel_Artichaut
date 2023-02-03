@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class video extends Model
+class Video extends Model
 {
     use HasFactory;
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function user()
     {
-        return $this->hasMany(user::class, 'fk_Video_Users');
+        return $this->belongsTo(User::class, 'fk_Users_Videos');
     }
 }

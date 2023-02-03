@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title_ang_discount');
             $table->longText('describe_fr');
             $table->longText('describe_ang');
+            $table->foreignId('fk_Users_Videos');
         });
     }
 

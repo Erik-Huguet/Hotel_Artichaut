@@ -5,28 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class picture extends Model
+class Picture extends Model
 {
     use HasFactory;
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function news()
     {
-        return $this->hasMany(news::class, 'fk_Picture_News');
+        return $this->hasMany(News::class, 'fk_Pictures_News');
     }
 
-    public function chamber()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function chambers()
     {
-        return $this->hasMany(chamber::class, 'fk_Picture_Chambers');
+        return $this->hasMany(Chamber::class, 'fk_Pictures_Chambers');
     }
 
-    public function discount()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function discounts()
     {
-        return $this->hasMany(discount::class, 'fk_Picture_Discount');
+        return $this->hasMany(Discount::class, 'fk_Pictures_Discounts');
     }
 
-    public function advantages()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advantage()
     {
-        return $this->hasMany(advantage::class, 'fk_Picture_Advantage');
+        return $this->hasMany(Advantage::class, 'fk_Pictures_Advantages');
     }
 }

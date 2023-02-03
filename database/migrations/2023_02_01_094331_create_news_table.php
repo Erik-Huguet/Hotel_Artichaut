@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('icon_new');
             $table->integer('position_icon_new');
             $table->timestamps();
+            $table->foreignId('fk_Users_News');
         });
     }
 

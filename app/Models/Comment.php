@@ -5,17 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class comment extends Model
+class Comment extends Model
 {
     use HasFactory;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->hasMany(user::class, 'fk_Comments_Users');
+        return $this->belongsTo(User::class, 'fk_Users_Comments');
     }
 
-    public function chamber()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function chambers()
     {
-        return $this->hasMany(chamber::class, 'fk_Comments_Chambers');
+        return $this->belongsTo(Chamber::class, 'fk_Chambers_Comments');
     }
 }

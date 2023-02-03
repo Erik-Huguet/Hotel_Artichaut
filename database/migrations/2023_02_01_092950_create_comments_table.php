@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('title_ang_comment', 80);
             $table->integer('rating')->nullable();
             $table->timestamps();
+            $table->foreignID('fk_Users_Comments');
+            $table->foreignID('fk_Chambers_Comments');
         });
     }
 
