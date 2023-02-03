@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('advantage', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr');
-            $table->string('describe_fr');
-            $table->string('title_ang');
-            $table->string('describe_ang');
+            $table->string('title_fr_adv');
+            $table->string('describe_fr_adv');
+            $table->string('title_ang_adv');
+            $table->string('describe_ang_adv');
             $table->string('icon_adv');
             $table->integer('position_icon_adv');
             $table->timestamps();

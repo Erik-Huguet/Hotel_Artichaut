@@ -17,11 +17,12 @@ class VideoFactory extends Factory
     public function definition()
     {
         return [
-            'title_fr_discount'=> fake()->name(),
-            'title_ang_discount'=> fake()->name(),
+            'title_fr_video'=> fake()->name(),
+            'title_ang_video'=> fake()->name(),
             'describe_fr' => fake()->paragraph,
             'describe_ang' => fake()->paragraph,
-            'describe_ang' => fake()->url(),
+            'url_video' => fake()->url(),
+
         ];
     }
 }
