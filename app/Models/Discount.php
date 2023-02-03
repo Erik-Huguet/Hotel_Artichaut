@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class video extends Model
+class discount extends Model
 {
     use HasFactory;
+
+
+    public function user()
+    {
+        return $this->hasMany(user::class, 'fk_Discounts_User');
+    }
 }

@@ -49,8 +49,8 @@ class user extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function role()
     {
-        return $this->hasMany(user::class, 'fk_Users_Roles');
+        return $this->hasMany(role::class, 'fk_Users_Roles');
     }
 }
