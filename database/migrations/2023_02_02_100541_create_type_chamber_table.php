@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_chamber', function (Blueprint $table) {
+        Schema::create('type_chambers', function (Blueprint $table) {
             $table->id();
             $table->string('type');
             $table->float('price');

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->longText('describe_ang');
             $table->string('code_discount');
             $table->foreignId('fk_Users_Discounts');
+            $table->timestamps();
         });
     }
 

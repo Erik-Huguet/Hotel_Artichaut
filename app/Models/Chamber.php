@@ -9,7 +9,6 @@ class Chamber extends Model
 {
     use HasFactory;
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */

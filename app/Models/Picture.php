@@ -41,4 +41,4 @@ class Picture extends Model
     {
         return $this->hasMany(Advantage::class, 'fk_Pictures_Advantages');
     }
-}
+};

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('describe_fr');
             $table->longText('describe_ang');
             $table->foreignId('fk_Users_Videos');
+            $table->timestamps();
         });
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('fk_Pictures_Chambers');
             $table->foreignId('fk_Pictures_Discounts');
             $table->foreignId('fk_Pictures_News');
+            $table->timestamps();
         });
     }
 
