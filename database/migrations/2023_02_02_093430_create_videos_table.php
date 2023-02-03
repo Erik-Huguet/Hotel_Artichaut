@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->string('title_fr_discount');
-            $table->string('title_ang_discount');
+            $table->string('title_fr_video');
+            $table->string('title_ang_video');
             $table->longText('describe_fr');
             $table->longText('describe_ang');
+            $table->string('url_video');
+            $table->foreignId('fk_Users_Videos');
             $table->timestamps();
         });
     }

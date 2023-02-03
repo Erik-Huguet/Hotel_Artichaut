@@ -20,9 +20,12 @@ class ChamberFactory extends Factory
             201, 202, 203,204,205,206,207,208,209,210,
             301, 302, 303,304,305,
             306,307,308,111, 211,
-        309,3010];
+        309,310];
+
+        $arrayValuesType = [1,2,3];
         return [
             'number_chamber' => fake()->randomElement($arrayValues),
+            'fk_Chamber_Type'=> fake()->randomElement($arrayValuesType),
         ];
     }
 }
