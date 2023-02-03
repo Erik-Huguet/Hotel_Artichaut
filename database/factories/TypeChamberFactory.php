@@ -18,8 +18,8 @@ class TypeChamberFactory extends Factory
     {
         $array= ['standad','luxe',' suite'];
         return [
-            'type'=> fake()->randomElement($array),
-            'price'=>fake()->randomFloat(1, 80, 200)
+            'type'=>fake()->randomElement($array),
+            'price'=>fake()->randomFloat(1, 80, 200),
         ];
     }
 }

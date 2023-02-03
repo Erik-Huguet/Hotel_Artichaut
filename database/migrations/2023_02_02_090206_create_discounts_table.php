@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title_fr_discount');
             $table->string('title_ang_discount');
-            $table->longText('describe_fr');
-            $table->longText('describe_ang');
+            $table->longText('describe_fr_discount');
+            $table->longText('describe_ang_discount');
             $table->string('code_discount');
             $table->timestamps();
 
