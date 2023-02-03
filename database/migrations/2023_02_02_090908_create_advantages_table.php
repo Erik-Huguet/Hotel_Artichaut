@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('icon_adv');
             $table->integer('position_icon_adv');
             $table->timestamps();
+            $table->foreignId('fk_Users_advantages');
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advantages');
+        Schema::dropIfExists('advantage');
     }
 };

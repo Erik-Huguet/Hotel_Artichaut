@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('number_chamber');
             $table->timestamps();
+            $table->foreignId('fk_Chamber_Type');
         });
     }
 

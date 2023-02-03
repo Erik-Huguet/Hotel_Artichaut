@@ -20,8 +20,8 @@ return new class extends Migration
             $table->longText('describe_fr_discount');
             $table->longText('describe_ang_discount');
             $table->string('code_discount');
+            $table->foreignId('fk_Users_Discounts');
             $table->timestamps();
-
         });
     }
 

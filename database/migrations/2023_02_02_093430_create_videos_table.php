@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('title_ang_video');
             $table->longText('describe_fr_video');
             $table->longText('describe_ang_video');
-            $table->string
-            ('url_video');
+            $table->string('url_video');
+            $table->foreignId('fk_Users_Videos');
             $table->timestamps();
         });
     }
