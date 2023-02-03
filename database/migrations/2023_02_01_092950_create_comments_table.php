@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title_fr_comment',80);
             $table->longText('describe_fr_comment');
+            $table->longText('describe_ang_comment');
             $table->string('title_ang_comment', 80);
             $table->integer('rating')->nullable();
             $table->timestamps();

@@ -22,6 +22,7 @@ class UserFactory extends Factory
         $arrayValues = [1, 2, 3];
 
         return [
+
             'lastname' => fake()->lastname(),
             'firstname'=> fake()->firstName(),
             'pseudo'=> fake()->randomLetter(),
