@@ -17,11 +17,10 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'title_fr_discount'=> fake()->name(),
-            'title_ang_discount'=> fake()->name(),
-            'describe_fr' => fake()->paragraph,
-            'describe_ang' => fake()->paragraph,
-            'code_discount' => fake()->randomFloat(),
+            'title_fr_comment'=> fake()->name(),
+            'title_ang_comment'=> fake()->name(),
+            'describe_fr_comment' => fake()->paragraph,
+            'describe_ang_comment' => fake()->paragraph,
             'rating'=> fake()->numberBetween(1, 5),
         ];
     }

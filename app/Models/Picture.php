@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Picture extends Model
 {
+    use HasFactory;
+};
 
-
-protected $fillable = [
-    'url_picture' => 'https://i.ytimg.com/vi/DBsW9bQhWy8/maxresdefault.jpg',
-];};

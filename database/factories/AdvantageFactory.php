@@ -17,11 +17,10 @@ class AdvantageFactory extends Factory
     public function definition()
     {
         return [
-            'title_fr_discount'=> fake()->name(),
-            'title_ang_discount'=> fake()->name(),
+            'title_fr'=> fake()->name(),
+            'title_ang'=> fake()->name(),
             'describe_fr' => fake()->paragraph,
             'describe_ang' => fake()->paragraph,
-            'code_discount' => fake()->randomFloat(),
             'icon_adv' => 'https://i.ytimg.com/vi/DBsW9bQhWy8/maxresdefault.jpg',
             'position_icon_adv' => fake()->randomDigit(),
         ];

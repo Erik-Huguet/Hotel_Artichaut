@@ -16,9 +16,13 @@ class ChamberFactory extends Factory
      */
     public function definition()
     {
+        $arrayValues = [101, 102, 103,104,105,106,107,108,109,110,
+            201, 202, 203,204,205,206,207,208,209,210,
+            301, 302, 303,304,305,
+            306,307,308,111, 211,
+        309,3010];
         return [
-            'type' => fake()->name(),
-            'price' => fake()->randomFloat(),
+            'number_chamber' => fake()->randomElement($arrayValues),
         ];
     }
 }

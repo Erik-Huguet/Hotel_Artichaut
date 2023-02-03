@@ -16,8 +16,9 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
+        $array= ['admin','user',' user_custumer'];
         return [
-            'type_role' =>(['admin', 'user', 'user_custumer']),
+            'type_role'=> fake()->randomElement($array),
         ];
     }
 }

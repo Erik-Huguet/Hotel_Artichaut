@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Picture>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Picutre>
  */
 class PictureFactory extends Factory
 {
@@ -17,7 +17,7 @@ class PictureFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'url_picture' =>fake()->imageUrl($width = 640, $height = 480),
         ];
     }
 }

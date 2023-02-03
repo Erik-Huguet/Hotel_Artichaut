@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TypeChamber>
  */
-class TypeChmaberFactory extends Factory
+class TypeChamberFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,8 +16,10 @@ class TypeChmaberFactory extends Factory
      */
     public function definition()
     {
+        $array= ['standad','luxe',' suite'];
         return [
-            //
+            'type'=> fake()->randomElement($array),
+            'price'=>fake()->randomFloat(1, 80, 200)
         ];
     }
 }

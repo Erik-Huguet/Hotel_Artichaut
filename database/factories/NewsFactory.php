@@ -17,10 +17,12 @@ class NewsFactory extends Factory
     public function definition()
     {
         return [
-            'title_fr_discount'=> fake()->name(),
-            'title_ang_discount'=> fake()->name(),
-            'describe_fr' => fake()->paragraph,
-            'describe_ang' => fake()->paragraph,
+            'title_fr_new'=> fake()->name(),
+            'title_ang_new'=> fake()->name(),
+            'describe_fr_new' => fake()->paragraph,
+            'describe_ang_new' => fake()->paragraph,
+            'position_icon_new' =>fake()->randomDigit(),
+            'icon_new' =>fake()->imageUrl($width = 640, $height = 480),
         ];
     }
 }
