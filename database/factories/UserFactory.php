@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'phone'=> fake()->phoneNumber(10),
             'avatar_user'=> fake()->emoji(),
             'password'=> fake()->password(10,20), // password
-            'fk_Users_Roles'=> fake()->randomElement($arrayValues),
+            'fk_Users_Roles'=> fake()->numberBetween(1,3),
         ];
     }
 
