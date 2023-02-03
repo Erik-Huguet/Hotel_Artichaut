@@ -16,6 +16,8 @@ class NewsFactory extends Factory
      */
     public function definition()
     {
+        $arrayValues = [1,2,3,4,5,6,7,8,9,10];
+
         return [
             'title_fr_new'=> fake()->name(),
             'title_ang_new'=> fake()->name(),
@@ -23,6 +25,7 @@ class NewsFactory extends Factory
             'describe_ang_new' => fake()->paragraph,
             'position_icon_new' =>fake()->randomDigit(),
             'icon_new' =>fake()->imageUrl($width = 640, $height = 480),
+            'fk_Users_News' =>fake()->randomElement($arrayValues),
         ];
     }
 }
