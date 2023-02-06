@@ -140,6 +140,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json($user);
+        return response()->json($user::all());
     }
 }
