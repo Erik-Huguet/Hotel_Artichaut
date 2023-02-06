@@ -16,7 +16,7 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        //dd($discounts);
+
         return response()->json($discounts);
     }
 

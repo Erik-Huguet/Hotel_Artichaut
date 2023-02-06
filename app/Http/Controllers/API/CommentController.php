@@ -16,7 +16,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::all();
-        dd($comments);
+
         return response()->json($comments);
     }
 
