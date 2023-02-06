@@ -22,17 +22,10 @@ class VideoFactory extends Factory
         return [
             'title_fr_video'=> fake()->name(),
             'title_ang_video'=> fake()->name(),
-<<<<<<< HEAD
             'describe_fr_video' => fake()->paragraph,
             'describe_ang_video' => fake()->paragraph,
             'url_video' => fake()->url(),
-=======
-            'describe_fr' => fake()->paragraph,
-            'describe_ang' => fake()->paragraph,
-            'url_video' => fake()->url(),
             'fk_Users_Videos'=> fake()->randomElement($arrayValues),
-
->>>>>>> d9bd27d461033dbbd130b13eacbf05f3a890d960
         ];
     }
 }

@@ -21,11 +21,8 @@ class ChamberFactory extends Factory
             301, 302, 303,304,305,
             306,307,308,111, 211,
         309,310];
-<<<<<<< HEAD
-=======
 
         $arrayValuesType = [1,2,3];
->>>>>>> d9bd27d461033dbbd130b13eacbf05f3a890d960
         return [
             'number_chamber' => fake()->randomElement($arrayValues),
             'fk_Chamber_Type'=> fake()->randomElement($arrayValuesType),
