@@ -11,13 +11,13 @@ class DiscountController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\jsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $discounts = Discount::all();
-        dd($discounts);
-        return response()->json($discounts);
+        $discount = Discount::all();
+
+        return response()->json($discount);
     }
 
     /**
@@ -104,11 +104,11 @@ class DiscountController extends Controller
         ]);
 
 
-        $discount->name = $request->get('title_fr_discount');
-        $discount->name = $request->get('title_fr_discount');
+        $discount->title_fr_discount = $request->get('title_fr_discount');
+        $discount->title_ang_discount = $request->get('title_ang_discount');
         $discount->describe_fr = $request->get('describe_fr');
-        $discount->describe_fr = $request->get('describe_ang');
-        $discount->describe_fr = $request->get('code_discount');
+        $discount->describe_ang = $request->get('describe_ang');
+        $discount->code_discount = $request->get('code_discount');
 
         $discount->save();
 
