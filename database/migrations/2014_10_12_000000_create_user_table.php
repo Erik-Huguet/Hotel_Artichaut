@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('pseudo')->unique();
             $table->string('email')->unique();
             $table->string('phone',20);
-            $table->string('avatar_user',80);
+            $table->string('avatar_user',255);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
