@@ -25,7 +25,7 @@ class UserFactory extends Factory
 
             'lastname' => fake()->lastname(),
             'firstname'=> fake()->firstName(),
-            'pseudo'=> fake()->randomLetter(),
+            'pseudo'=> fake()->unique()->randomLetter(),
             'email' => fake()->unique()->safeEmail(),
             'phone'=> fake()->phoneNumber(10),
             'avatar_user'=> fake()->emoji(),

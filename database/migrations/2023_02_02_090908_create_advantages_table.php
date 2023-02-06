@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
 
             $table->string('title_fr_adv');
-            $table->string('describe_fr_adv');
+            $table->longText('describe_fr_adv');
             $table->string('title_ang_adv');
-            $table->string('describe_ang_adv');
+            $table->longText('describe_ang_adv');
             $table->string('icon_adv');
             $table->integer('position_icon_adv');
             $table->timestamps();

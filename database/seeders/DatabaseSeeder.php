@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Advantage::factory(4)->create();
 
         $this->call([
-            RoleSeeder::class,
+            UserSeeder::class,
         ]);
 
 
