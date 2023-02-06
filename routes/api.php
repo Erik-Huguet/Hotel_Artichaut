@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\API\DiscountController;
+
+
+use App\Http\Controllers\API\CommentController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 //Route::apiResource('discounts', DiscountController::class);
 
 Route::get('discounts', [DiscountController::class, 'index']);
+
+
+//Route::apiResource('comments',CommentController::class);
+Route::get('comments',[CommentController::class,'index']);
+

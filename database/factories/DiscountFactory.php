@@ -21,8 +21,8 @@ class DiscountFactory extends Factory
         return [
             'title_fr_discount'=> fake()->name(),
             'title_ang_discount'=> fake()->name(),
-            'describe_fr' => fake()->paragraph,
-            'describe_ang' => fake()->paragraph,
+            'describe_fr_discount' => fake()->paragraph,
+            'describe_ang_discount' => fake()->paragraph,
             'code_discount' => fake()->randomFloat(),
             'fk_Users_Discounts'=> fake()->randomElement($arrayValues),
         ];
