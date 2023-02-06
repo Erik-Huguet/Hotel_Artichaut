@@ -11,12 +11,12 @@ class DiscountController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\jsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $discounts = Discount::all();
-        dd($discounts);
+        //dd($discounts);
         return response()->json($discounts);
     }
 
