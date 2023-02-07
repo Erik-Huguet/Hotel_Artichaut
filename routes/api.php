@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\API\AdvantageController;
 use App\Http\Controllers\API\ChamberController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
@@ -30,25 +30,40 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('advantages', AdvantageController::class);
+});
 
 //Route::apiResource('chambers', ChamberController::class);
-
 Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('chambers', ChamberController::class);
 });
-
-//Route::apiResource('discounts', DiscountController::class);
-
-Route::group(['prefix' => 'v1'], function() {
-    Route::apiResource('discounts', DiscountController::class);
-});
-
 
 //Route::apiResource('comments',CommentController::class);
 Route::group(['prefix' => 'v1'],function() {
     Route::apiResource('comments', CommentController::class);
 });
 
+//Route::apiResource('discounts', DiscountController::class);
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('discounts', DiscountController::class);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('news', NewsController::class);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('pictures', PictureController::class);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('roles', RoleController::class);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('types_chambers', TypeChamberController::class);
+});
 
 //Route::apiResource('users',UserController::class);
 Route::group(['prefix' => 'v1'], function() {
