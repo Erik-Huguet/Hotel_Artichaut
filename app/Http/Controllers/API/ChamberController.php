@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chamber;
 use Illuminate\Http\Request;
 
 class ChamberController extends Controller
@@ -10,11 +11,12 @@ class ChamberController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        $chambers = Chamber::all();
+        return response()->json($chambers);
     }
 
     /**
@@ -42,11 +44,17 @@ class ChamberController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        $chamber = Chamber::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Detail data post',
+            'data' => $chamber
+        ], 200);
     }
 
     /**
