@@ -25,12 +25,12 @@ class UserFactory extends Factory
 
             'lastname' => fake()->lastname(),
             'firstname'=> fake()->firstName(),
-            'pseudo'=> fake()->randomLetter(),
+            'pseudo'=> fake()->unique()->randomLetter(),
             'email' => fake()->unique()->safeEmail(),
             'phone'=> fake()->phoneNumber(10),
             'avatar_user'=> fake()->emoji(),
             'password'=> fake()->password(10,20), // password
-            'fk_Users_Roles'=> fake()->randomElement($arrayValues),
+            'fk_Users_Roles'=> fake()->numberBetween(1,3),
         ];
     }
 

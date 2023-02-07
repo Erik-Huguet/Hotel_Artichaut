@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->string('title_fr_video');
             $table->string('title_ang_video');
-            $table->longText('describe_fr');
-            $table->longText('describe_ang');
+            $table->longText('describe_fr_video');
+            $table->longText('describe_ang_video');
             $table->string('url_video');
             $table->foreignId('fk_Users_Videos');
             $table->timestamps();

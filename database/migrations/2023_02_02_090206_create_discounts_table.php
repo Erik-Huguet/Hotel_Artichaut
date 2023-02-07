@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
             $table->string('title_fr_discount');
-            $table->string('title_ang_discount');
-            $table->longText('describe_fr');
-            $table->longText('describe_ang');
+            $table->string('title_eng_discount');
+            $table->longText('describe_fr_discount');
+            $table->longText('describe_eng_discount');
             $table->string('code_discount');
             $table->foreignId('fk_Users_Discounts');
             $table->timestamps();

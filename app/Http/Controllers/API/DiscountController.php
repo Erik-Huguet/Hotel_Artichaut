@@ -15,9 +15,9 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        $discount = Discount::all();
+        $discounts = Discount::all();
 
-        return response()->json($discount);
+        return response()->json($discounts);
     }
 
     /**
@@ -97,18 +97,20 @@ class DiscountController extends Controller
 
         $request->validate([
             'title_fr_discount' => 'required|max:50',
-            'title_ang_discount' => 'required|max:50',
-            'describe_fr' => 'required',
-            'describe_ang' => 'required',
-            'code_discount' => 'required'
+            'title_eng_discount' => 'required|max:50',
+            'describe_fr_discount' => 'required',
+            'describe_eng_discount' => 'required',
+            'code_discount' => 'required',
+            'fk_Users_Discounts' => 'required',
         ]);
 
 
         $discount->title_fr_discount = $request->get('title_fr_discount');
-        $discount->title_ang_discount = $request->get('title_ang_discount');
-        $discount->describe_fr = $request->get('describe_fr');
-        $discount->describe_ang = $request->get('describe_ang');
+        $discount->title_eng_discount = $request->get('title_eng_discount');
+        $discount->describe_fr = $request->get('describe_fr_dicount');
+        $discount->describe_eng_discount = $request->get('describe_eng_discount');
         $discount->code_discount = $request->get('code_discount');
+        $discount->fk_Users_discount = $request->get('fk_Users_discount');
 
         $discount->save();
 
