@@ -1,7 +1,7 @@
 <?php
 
 
-
+use App\Http\Controllers\API\ChamberController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
 use App\Http\Controllers\API\UserController;
@@ -27,19 +27,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+//Route::apiResource('chambers', ChamberController::class);
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('chambers', ChamberController::class);
+});
+
 //Route::apiResource('discounts', DiscountController::class);
 
-Route::get('discounts', [DiscountController::class, 'index']);
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('discounts', DiscountController::class);
+});
 
 
 //Route::apiResource('comments',CommentController::class);
-Route::get('comments',[CommentController::class,'index']);
+Route::group(['prefix' => 'v1'],function() {
+    Route::apiResource('comments', CommentController::class);
+});
 
 
 //Route::apiResource('users',UserController::class);
-Route::get('Users',[UserController::class,'index']);
+Route::group(['prefix' => 'v1'], function() {
+    Route::apiResource('users', UserController::class);
+});
 
 //Route::apiResource('videos',VideoController::class);
-Route::get('videos',[VideoController::class,'index']);
+Route::group(['prefix'=> 'v1'], function() {
+    Route::apiResource('videos', VideoController::class);
+});
 
 
