@@ -3,9 +3,10 @@
 
 
 use App\Http\Controllers\API\CommentController;
-
 use App\Http\Controllers\API\DiscountController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\VideoController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,11 @@ Route::get('discounts', [DiscountController::class, 'index']);
 //Route::apiResource('comments',CommentController::class);
 Route::get('comments',[CommentController::class,'index']);
 
-//Route::apiResource('user' , UserController::class);
-Route::get('user', [UserController::class, 'index']);
+
+//Route::apiResource('users',UserController::class);
+Route::get('Users',[UserController::class,'index']);
+
+//Route::apiResource('videos',VideoController::class);
+Route::get('videos',[VideoController::class,'index']);
+
 

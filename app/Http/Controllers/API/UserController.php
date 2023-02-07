@@ -38,23 +38,28 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'lastname' => 'required|max255',
-            'firstname' => 'required|max255',
-            'pseudo' => 'required|max255',
-            'email' => 'required|max255',
-            'phone' => 'required|max15',
-            'avatar' => 'required|max80',
-            'password' => 'required|max255',
+
+
+            'lastname'=> 'required|max:255',
+            'firstname' => 'required|max:255',
+            'pseudo' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|max:20',
+            'avatar_user' => 'required|max:255',
+            'email_verified_at' => 'nullable',
+            'password' => 'required|max:255',
             'fk_Users_Roles' => 'required',
         ]);
 
         $newUser = new User([
-            'lastname' => $request->get('lastname'),
-            'firstname' => $request->get('firstaname'),
+
+            'lastname'=> $request->get('lastname'),
+            'firstname' => $request->get('firstname'),
             'pseudo' => $request->get('pseudo'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
             'avatar_user' => $request->get('avatar_user'),
+            'email_verified_at' => $request->get('email_verified_at'),
             'password' => $request->get('password'),
             'fk_Users_Roles' => $request->get('fk_Users_Roles'),
         ]);
@@ -72,9 +77,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::finOrFail($id);
+        $user = User::findOrFail($id);
 
-        return response()->json($user);
+         return response()->json($user);
+
     }
 
     /**
@@ -93,11 +99,39 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'lastname'=> 'required|max:255',
+            'firstname' => 'required|max:255',
+            'pseudo' => 'required|max:255',
+            'email' => 'required|max:255',
+            'phone' => 'required|max:20',
+            'avatar_user' => 'required|max:255',
+            'email_verified_at' => 'nullable',
+            'password' => 'required|max:255',
+            'fk_Users_Roles' => 'required',
+        ]);
+
+
+            $user->lastname = $request->get('lastname');
+            $user->firstname = $request->get('firstname');
+            $user->pseudo = $request->get('pseudo');
+            $user->email = $request->get('email');
+            $user->phone = $request->get('phone');
+            $user->avatar_user = $request->get('avatar_user');
+            $user->email_verified_at = $request->get('email_verified_at');
+            $user->password = $request->get('password');
+            $user->fk_Users_Roles = $request->get('fk_Users_Roles');
+
+            $user->save();
+
+            return response()->json($user);
+
     }
 
     /**
@@ -108,7 +142,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::FindOrFail($id);
+
+        $user = User::findOrFail($id);
+
         $user->delete();
 
         return response()->json($user::all());

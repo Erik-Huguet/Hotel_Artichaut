@@ -27,10 +27,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Advantage::factory(4)->create();
 
         $this->call([
-
             UserSeeder::class,
         ]);
-
 
        // \App\Models\user::factory(10)->create();
         // \App\Models\user::factory()->create([
