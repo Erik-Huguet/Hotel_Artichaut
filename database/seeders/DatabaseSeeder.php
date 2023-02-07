@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
     {
 
         \App\Models\Video::factory(1)->create();
-         \App\Models\TypeChamber::factory(3)->create();
+        \App\Models\TypeChamber::factory(3)->create();
         \App\Models\Role::factory(3)->create();
-      \App\Models\Picture::factory(10)->create();
+        \App\Models\Picture::factory(10)->create();
         \App\Models\News::factory(10)->create();
         \App\Models\Discount::factory(4)->create();
         \App\Models\Comment::factory(10)->create();
