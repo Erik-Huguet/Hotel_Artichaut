@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Picture;
+use App\Models\TypeChamber;
 use Illuminate\Http\Request;
+use SebastianBergmann\Type\CallableType;
 
-class PictureController extends Controller
+class TypeChamberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class PictureController extends Controller
      */
     public function index()
     {
-        $pictures = Picture::all();
+        $typeChamber = TypeChamber::all();
 
-        return response()->json($pictures);
+        return response()->json($typeChamber);
     }
 
     /**
@@ -40,16 +40,19 @@ class PictureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'url_picture' => 'required',
+            'type' => 'required|max:50',
+            'price' => 'required|integer',
         ]);
 
-        $newPicture = new Picture([
-            'url_picture' => $request->get('url_picture')
+
+        $newType = new TypeChamber([
+            'type' => $request->get('type'),
+            'price' => $request->get('price'),
         ]);
 
-        $newPicture->save();
+        $newType->save();
 
-        return response()->json($newPicture);
+        return response()->json($newType);
     }
 
     /**
@@ -60,9 +63,9 @@ class PictureController extends Controller
      */
     public function show($id)
     {
-        $picutre = Picture::findOrFail($id);
+        $typeChamber = TypeChamber::findOrFail($id);
 
-        return response()->json($picutre);
+        return response()->json($typeChamber);
     }
 
     /**
@@ -85,18 +88,18 @@ class PictureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $picture = Picture::findOrFail($id);
+        $newType = TypeChamber::findOrFail($id);
 
         $request->validate([
-            'url_picture' => 'required',
-
+            'type' => 'required|max:50',
+            'price' => 'required|integer',
         ]);
 
-        $picture->url_picture = $request->get('url_picture');
+        $newType->type = $request->get('type');
+        $newType->price = $request->get('price');
+        $newType->save();
 
-        $picture->save();
-
-        return response()->json($picture);
+        return response()->json($newType);
     }
 
     /**
@@ -107,10 +110,10 @@ class PictureController extends Controller
      */
     public function destroy($id)
     {
-        $picture = Picture::findOrFail($id);
+        $typeChamber = TypeChamber::findOrFail($id);
 
-        $picture->delete();
+        $typeChamber->delete();
 
-        return response()->json($picture::all());
+        return response()->json($typeChamber::all());
     }
 }

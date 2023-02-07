@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Picture;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class PictureController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class PictureController extends Controller
      */
     public function index()
     {
-        $pictures = Picture::all();
+        $roles = Role::all();
 
-        return response()->json($pictures);
+        return response()->json($roles);
     }
 
     /**
@@ -40,16 +39,17 @@ class PictureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'url_picture' => 'required',
+            'type_role' => 'required|max:50',
         ]);
 
-        $newPicture = new Picture([
-            'url_picture' => $request->get('url_picture')
+
+        $newRole = new Role([
+            'type_role' => $request->get('type_role'),
         ]);
 
-        $newPicture->save();
+        $newRole->save();
 
-        return response()->json($newPicture);
+        return response()->json($newRole);
     }
 
     /**
@@ -60,9 +60,9 @@ class PictureController extends Controller
      */
     public function show($id)
     {
-        $picutre = Picture::findOrFail($id);
+        $roles = Role::findOrFail($id);
 
-        return response()->json($picutre);
+        return response()->json($roles);
     }
 
     /**
@@ -85,18 +85,17 @@ class PictureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $picture = Picture::findOrFail($id);
+        $role = Role::findOrFail($id);
 
         $request->validate([
-            'url_picture' => 'required',
-
+            'type_role' => 'required',
         ]);
 
-        $picture->url_picture = $request->get('url_picture');
 
-        $picture->save();
+        $role->type_role = $request->get('type_role');
+        $role->save();
 
-        return response()->json($picture);
+        return response()->json($role);
     }
 
     /**
@@ -107,10 +106,10 @@ class PictureController extends Controller
      */
     public function destroy($id)
     {
-        $picture = Picture::findOrFail($id);
+        $role = Role::findOrFail($id);
 
-        $picture->delete();
+        $role->delete();
 
-        return response()->json($picture::all());
+        return response()->json($role::all());
     }
 }
