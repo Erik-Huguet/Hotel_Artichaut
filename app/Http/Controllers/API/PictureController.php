@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\StorePictureRequest;
+use App\Http\Requests\UpdatePictureRequest;
 use App\Models\Picture;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PictureController extends Controller
 {
@@ -34,44 +35,37 @@ class PictureController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePictureRequest  $request
      * @return \Illuminate\Http\jsonResponse
      */
-    public function store(Request $request)
+    public function store(StorePictureRequest $request)
     {
-        $request->validate([
-            'url_picture' => 'required',
-        ]);
-
-        $newPicture = new Picture([
-            'url_picture' => $request->get('url_picture')
-        ]);
-
+        $validateData = $request->validated();
+        $newPicture = new Picture($validateData);
         $newPicture->save();
-
-        return response()->json($newPicture);
+        return response()->json($newPicture, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\jsonResponse
      */
-    public function show($id)
+    public function show(Picture $picture)
     {
-        $picutre = Picture::findOrFail($id);
+        $picture = Picture::findOrFail($picture);
 
-        return response()->json($picutre);
+        return response()->json($picture);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Picture $picture)
     {
         //
     }
@@ -79,35 +73,29 @@ class PictureController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdatePictureRequest  $request
+     * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\jsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePictureRequest $request, Picture $picture)
     {
-        $picture = Picture::findOrFail($id);
+        $picture = Picture::findOrFail($picture);
 
-        $request->validate([
-            'url_picture' => 'required',
-
-        ]);
-
-        $picture->url_picture = $request->get('url_picture');
-
+        $validateData = $request->validated();
+        $picture = new Picture($validateData);
         $picture->save();
-
-        return response()->json($picture);
+        return response()->json($picture, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Picture  $picture
      * @return \Illuminate\Http\jsonResponse
      */
-    public function destroy($id)
+    public function destroy(Picture $picture)
     {
-        $picture = Picture::findOrFail($id);
+        $picture = Picture::findOrFail($picture);
 
         $picture->delete();
 

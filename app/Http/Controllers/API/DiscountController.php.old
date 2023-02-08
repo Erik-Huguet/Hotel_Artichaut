@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDiscountRequest;
+use App\Http\Requests\UpdateDiscountRequest;
 use App\Models\Discount;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DiscountController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\jsonResponse
      */
     public function index()
     {
@@ -21,65 +23,37 @@ class DiscountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreDiscountRequest  $request
      * @return \Illuminate\Http\jsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreDiscountRequest $request)
     {
-        $request->validate([
-            'title_fr_discount' => 'required|max:50',
-            'title_ang_discount' => 'required|max:50',
-            'describe_fr' => 'required',
-            'describe_ang' => 'required',
-            'code_discount' => 'required'
-        ]);
-
-
-        $newDiscount = new Discount([
-            'title_fr_discount' => $request->get('title_fr_discount'),
-            'title_ang_discount' => $request->get('title_ang_discount'),
-            'describe_fr' => $request->get('describe_fr'),
-            'describe_ang' => $request->get('describe_ang'),
-            'code_discount' => $request->get('code_discount')
-        ]);
-
+        $validateData = $request->validated();
+        $newDiscount = new Discount($validateData);
         $newDiscount->save();
-
-        return response()->json($newDiscount);
+        return response()->json($newDiscount, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\jsonResponse
      */
-    public function show($id)
+    public function show(Discount $discount)
     {
-        $discount = Discount::findOrFail($id);
-
-        return response()->json($discount);
+        return response()->json($discount, Response::HTTP_OK);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Discount $discount)
     {
         //
     }
@@ -87,46 +61,29 @@ class DiscountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateDiscountRequest  $request
+     * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\jsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        $discount = Discount::findOrFail($id);
+        $discounts = Discount::findOrFail($discount);
 
-        $request->validate([
-            'title_fr_discount' => 'required|max:50',
-            'title_eng_discount' => 'required|max:50',
-            'describe_fr_discount' => 'required',
-            'describe_eng_discount' => 'required',
-            'code_discount' => 'required',
-            'fk_Users_Discounts' => 'required',
-        ]);
-
-
-        $discount->title_fr_discount = $request->get('title_fr_discount');
-        $discount->title_eng_discount = $request->get('title_eng_discount');
-        $discount->describe_fr = $request->get('describe_fr_dicount');
-        $discount->describe_eng_discount = $request->get('describe_eng_discount');
-        $discount->code_discount = $request->get('code_discount');
-        $discount->fk_Users_discount = $request->get('fk_Users_discount');
-
-        $discount->save();
-
-        return response()->json($discount);
-
+        $validateData = $request->validated();
+        $discounts = new Discount($validateData);
+        $discounts->save();
+        return response()->json($discounts, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Discount  $discount
      * @return \Illuminate\Http\jsonResponse
      */
-    public function destroy($id)
+    public function destroy(Discount $discount)
     {
-        $discount = Discount::findOrFail($id);
+        $discount = Discount::findOrFail($discount);
 
         $discount->delete();
 

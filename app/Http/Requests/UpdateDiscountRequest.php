@@ -24,7 +24,13 @@ class UpdateDiscountRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+
+            'title_fr_discount' => 'required|max:50',
+            'title_ang_discount' => 'required|max:50',
+            'describe_fr' => 'required',
+            'describe_ang' => 'required',
+            'code_discount' => 'required'
+
         ];
     }
 }
