@@ -9,6 +9,10 @@ class Picture extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'url_picture',
+
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -41,4 +45,4 @@ class Picture extends Model
     {
         return $this->hasMany(Advantage::class, 'fk_Pictures_Advantages');
     }
-};
+}
