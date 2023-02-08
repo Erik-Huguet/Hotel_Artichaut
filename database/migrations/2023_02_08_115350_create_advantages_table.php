@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('advantages', function (Blueprint $table) {
             $table->id();
-
             $table->string('title_fr_adv');
             $table->longText('describe_fr_adv');
             $table->string('title_ang_adv');
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advantage');
+        Schema::dropIfExists('advantages');
     }
 };

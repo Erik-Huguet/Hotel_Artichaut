@@ -14,7 +14,7 @@ class Chamber extends Model
      */
     public function type_chamber()
     {
-        return $this->belongsTo(Type_chamber::class, 'fk_Chamber_Type');
+        return $this->belongsTo(TypeChamber::class, 'fk_Chamber_Type');
     }
 
     /**

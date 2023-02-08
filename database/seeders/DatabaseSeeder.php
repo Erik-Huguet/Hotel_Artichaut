@@ -19,15 +19,18 @@ class DatabaseSeeder extends Seeder
         \App\Models\Video::factory(1)->create();
         \App\Models\TypeChamber::factory(3)->create();
         \App\Models\Role::factory(3)->create();
-        \App\Models\Comment::factory(10)->create();
-        \App\Models\Chamber::factory(37)->create();
-        \App\Models\Advantage::factory(4)->create();
+
+
+
 
         $this->call([
             UserSeeder::class,
             DiscountSeeder::class,
             NewsSeeder::class,
             PictureSeeder::class,
+            AdvantageSeeder::class,
+            ChamberSeeder::class,
+            CommentSeeder::class,
 
         ]);
 

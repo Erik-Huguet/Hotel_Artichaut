@@ -3,83 +3,78 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreAdvantageRequest;
+use App\Http\Requests\UpdateAdvantageRequest;
+use App\Models\Advantage;
+use Illuminate\Http\Response;
 
 class AdvantageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $advantage = Advantage::all();
+        return response()->json($advantage);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreAdvantageRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreAdvantageRequest $request)
     {
-        //
+        $validateData = $request->validated();
+        $newAdvantage = new Advantage($validateData);
+        $newAdvantage->save();
+        return response()->json($newAdvantage, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Advantage  $advantage
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Advantage $advantage)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($advantage, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\UpdateAdvantageRequest  $request
+     * @param  \App\Models\Advantage  $advantage
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAdvantageRequest $request, Advantage $advantage)
     {
-        //
+        $advantage = Advantage::findOrFail($advantage);
+
+        $validateData = $request->validated();
+        $advantage = new Advantage($validateData);
+        $advantage->save();
+        return response()->json($advantage, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Advantage  $advantage
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Advantage $advantage)
     {
-        //
+        $advantage = Advantage::findOrFail($advantage);
+
+        $advantage->delete();
+
+        return response()->json($advantage::all());
     }
 }
