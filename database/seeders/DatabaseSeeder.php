@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\Role::factory(3)->create();
         \App\Models\Picture::factory(10)->create();
         \App\Models\News::factory(10)->create();
-        \App\Models\Discount::factory(4)->create();
         \App\Models\Comment::factory(10)->create();
         \App\Models\Chamber::factory(37)->create();
         \App\Models\Advantage::factory(4)->create();
 
         $this->call([
             UserSeeder::class,
+            DiscountSeeder::class,
         ]);
 
        // \App\Models\user::factory(10)->create();
