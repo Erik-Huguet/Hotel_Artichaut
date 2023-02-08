@@ -57,7 +57,7 @@ class AdvantageController extends Controller
     {
         $advantage = Advantage::findOrFail($advantage);
 
-        $validateData = $request->validated();
+        $validateData = $request->validated($advantage);
         $advantage = new Advantage($validateData);
         $advantage->save();
         return response()->json($advantage, Response::HTTP_ACCEPTED);
