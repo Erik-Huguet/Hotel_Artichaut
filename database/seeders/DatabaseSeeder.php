@@ -18,9 +18,10 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Video::factory(1)->create();
         \App\Models\TypeChamber::factory(3)->create();
-        \App\Models\Role::factory(3)->create();
+
         $this->call([
             UserSeeder::class,
+            RoleSeeder::class,
             DiscountSeeder::class,
             NewsSeeder::class,
             PictureSeeder::class,

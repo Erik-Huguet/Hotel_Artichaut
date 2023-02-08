@@ -48,17 +48,6 @@ class DiscountController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Discount  $discount
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Discount $discount)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateDiscountRequest  $request
@@ -67,12 +56,12 @@ class DiscountController extends Controller
      */
     public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        $discounts = Discount::findOrFail($discount);
+        $discount = Discount::findOrFail($discount);
 
-        $validateData = $request->validated();
-        $discounts = new Discount($validateData);
-        $discounts->save();
-        return response()->json($discounts, Response::HTTP_ACCEPTED);
+        $validateData = $request->validated($discount);
+        $discount = new Discount($validateData);
+        $discount->save();
+        return response()->json($discount, Response::HTTP_ACCEPTED);
     }
 
     /**
