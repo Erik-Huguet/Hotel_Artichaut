@@ -3,117 +3,74 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTypeChamberRequest;
+use App\Http\Requests\UpdateTypeChamberRequest;
 use App\Models\TypeChamber;
-use Illuminate\Http\Request;
-use SebastianBergmann\Type\CallableType;
+use Illuminate\Http\Response;
 
 class TypeChamberController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\jsonResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $typeChamber = TypeChamber::all();
-
         return response()->json($typeChamber);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\jsonResponse
+     * @param  \App\Http\Requests\StoreTypeChamberRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreTypeChamberRequest $request)
     {
-        $request->validate([
-            'type' => 'required|max:50',
-            'price' => 'required|integer',
-        ]);
-
-
-        $newType = new TypeChamber([
-            'type' => $request->get('type'),
-            'price' => $request->get('price'),
-        ]);
-
-        $newType->save();
-
-        return response()->json($newType);
+        $validateData = $request->validated();
+        $newTypeChamber = new TypeChamber($validateData);
+        $newTypeChamber->save();
+        return response()->json($newTypeChamber, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\jsonResponse
+     * @param  \App\Models\TypeChamber  $typeChamber
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(TypeChamber $typeChamber)
     {
-        $typeChamber = TypeChamber::findOrFail($id);
-
-        return response()->json($typeChamber);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($typeChamber, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\jsonResponse
+     * @param  \App\Http\Requests\UpdateTypeChamberRequest  $request
+     * @param  \App\Models\TypeChamber  $typeChamber
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTypeChamberRequest $request, TypeChamber $typeChamber)
     {
-        $newType = TypeChamber::findOrFail($id);
-
-        $request->validate([
-            'type' => 'required|max:50',
-            'price' => 'required|integer',
-        ]);
-
-        $newType->type = $request->get('type');
-        $newType->price = $request->get('price');
-        $newType->save();
-
-        return response()->json($newType);
+        $typeChamber = TypeChamber::findOrFail($typeChamber);
+        $validateData = $request->validated($typeChamber);
+        $newTypeChamber = new TypeChamber($validateData);
+        return response()->json($newTypeChamber, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\jsonResponse
+     * @param  \App\Models\TypeChamber  $typeChamber
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(TypeChamber $typeChamber)
     {
-        $typeChamber = TypeChamber::findOrFail($id);
-
+        $typeChamber = TypeChamber::findOrFail($typeChamber);
         $typeChamber->delete();
-
         return response()->json($typeChamber::all());
     }
 }

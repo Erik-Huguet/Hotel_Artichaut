@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreChamberRequest extends FormRequest
+class UpdateTypeChamberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class StoreChamberRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_chamber' => 'required',
-            'created_at' => 'datetime(now())',
-            'updated_at' => 'datetime()',
-            'fk_Chambers_TypeChamber' => 'required',
+            'typeChamber' => 'required|max:50',
+            'price' => 'required|integer',
         ];
     }
 }

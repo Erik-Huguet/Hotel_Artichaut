@@ -25,7 +25,7 @@ class ChamberFactory extends Factory
         $arrayValuesType = [1,2,3];
         return [
             'number_chamber' => fake()->randomElement($arrayValues),
-            'fk_Chamber_Type'=> fake()->randomElement($arrayValuesType),
+            'fk_Chambers_TypeChamber'=> fake()->randomElement($arrayValuesType),
         ];
     }
 }

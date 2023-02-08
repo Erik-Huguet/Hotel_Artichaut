@@ -27,7 +27,7 @@ class UpdateChamberRequest extends FormRequest
             'number_chamber' => 'required',
             'created_at' => 'datetime',
             'updated_at' => 'datetime(now())',
-            'fk_Chamber_Type' => 'required',
+            'fk_Chambers_TypeChamber' => 'required',
 
         ];
     }

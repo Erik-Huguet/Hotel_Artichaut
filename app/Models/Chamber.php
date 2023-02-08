@@ -12,9 +12,9 @@ class Chamber extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function type_chamber()
+    public function typechamber()
     {
-        return $this->belongsTo(TypeChamber::class, 'fk_Chamber_Type');
+        return $this->belongsTo(TypeChamber::class, 'fk_Chambers_TypeChamber');
     }
 
     /**
