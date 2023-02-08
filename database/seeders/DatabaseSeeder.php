@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        \App\Models\Video::factory(1)->create();
+
         \App\Models\TypeChamber::factory(3)->create();
 
         $this->call([
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AdvantageSeeder::class,
             ChamberSeeder::class,
             CommentSeeder::class,
+            VideoSeeder::class,
 
         ]);
 
