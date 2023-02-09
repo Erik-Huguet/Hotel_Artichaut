@@ -25,10 +25,12 @@ class StoreAdvantageRequest extends FormRequest
     {
         return [
             'title_fr_adv' => ['required', 'max:50'],
-            'discribe_fr_adv' => ['required', 'max:300'],
+            'describe_fr_adv' => ['required', 'max:300'],
             'title_ang_adv' => ['required','max:50'],
-            'discribe_ang_adv' => ['required', 'longText'],
-            'icon_adv' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
+            'describe_ang_adv' => ['required', 'max:300'],
+            'icon_adv' => ['required', 'url', 'max:2048'],
+            'position_icon_adv' => ['required'],
+            'fk_Users_advantages' => ['required']
         ];
     }
 }

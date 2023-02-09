@@ -27,56 +27,22 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
-
-
-
     return $request->user();
 });
 
+//Route::apiResource('comments',CommentController::class);
 Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('advantages', AdvantageController::class);
-});
-
-    //Route::group(['prefix' => 'v1'], function() {
-     Route::apiResource('chambers', ChamberController::class);
-//Route::get('/chambers', [ChamberController::class, 'index']);
-//Route::post('/chambers', [ChamberController::class, 'store']);
-//Route::delete('/chambers', [ChamberController::class, 'destroy']);
-
-//Route::apiResource('comments',CommentController::class);
-Route::group(['prefix' => 'v1'],function() {
+    Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
-});
-
-//Route::apiResource('discounts', DiscountController::class);
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('discounts', DiscountController::class);
-});
-
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('news', NewsController::class);
-});
-
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('pictures', PictureController::class);
-});
-
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('roles', RoleController::class);
-});
-
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('types_chambers', TypeChamberController::class);
-});
-
-//Route::apiResource('users',UserController::class);
-Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('users', UserController::class);
-});
-
-//Route::apiResource('videos',VideoController::class);
-Route::group(['prefix'=> 'v1'], function() {
     Route::apiResource('videos', VideoController::class);
 });
+
 
 

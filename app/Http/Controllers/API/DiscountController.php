@@ -18,7 +18,6 @@ class DiscountController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-
         return response()->json($discounts);
     }
 
@@ -32,6 +31,7 @@ class DiscountController extends Controller
     {
         $validateData = $request->validated();
         $newDiscount = new Discount($validateData);
+        $newDiscount->setRawAttributes($validateData);
         $newDiscount->save();
         return response()->json($newDiscount, Response::HTTP_CREATED);
     }
@@ -56,11 +56,8 @@ class DiscountController extends Controller
      */
     public function update(UpdateDiscountRequest $request, Discount $discount)
     {
-        $discount = Discount::findOrFail($discount);
-
         $validateData = $request->validated($discount);
-        $discount = new Discount($validateData);
-        $discount->save();
+        $discount->update($validateData);
         return response()->json($discount, Response::HTTP_ACCEPTED);
     }
 
@@ -72,10 +69,7 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        $discount = Discount::findOrFail($discount);
-
         $discount->delete();
-
         return response()->json($discount::all());
     }
 }

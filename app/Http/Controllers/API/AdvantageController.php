@@ -57,7 +57,6 @@ class AdvantageController extends Controller
     public function update(UpdateAdvantageRequest $request, Advantage $advantage)
     {
         $validateData = $request->validated();
-
         $advantage->update($validateData);
         return response()->json($advantage, Response::HTTP_ACCEPTED);
     }

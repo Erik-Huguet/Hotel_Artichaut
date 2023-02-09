@@ -31,6 +31,7 @@ class CommentController extends Controller
     {
         $validateData = $request->validated();
         $newComment = new Comment($validateData);
+        $newComment->setRawAttributes($validateData);
         $newComment->save();
         return response()->json($newComment, Response::HTTP_CREATED);
     }
@@ -55,11 +56,8 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        $comment = Comment::findOrFail($comment);
-
         $validateData = $request->validated();
-        $comment = new Comment($validateData);
-        $comment->save();
+        $comment->update($validateData);
         return response()->json($comment, Response::HTTP_ACCEPTED);
     }
 
@@ -71,10 +69,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment = Comment::findOrFail($comment);
-
         $comment->delete();
-
         return response()->json($comment::all());
     }
 }
