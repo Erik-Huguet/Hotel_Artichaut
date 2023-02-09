@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdvantageRequest;
 use App\Http\Requests\UpdateAdvantageRequest;
 use App\Models\Advantage;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class AdvantageController extends Controller
 {

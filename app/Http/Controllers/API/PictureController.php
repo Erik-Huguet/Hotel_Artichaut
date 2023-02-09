@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePictureRequest;
 use App\Http\Requests\UpdatePictureRequest;
 use App\Models\Picture;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class PictureController extends Controller
 {
@@ -18,18 +19,7 @@ class PictureController extends Controller
     public function index()
     {
         $pictures = Picture::all();
-
         return response()->json($pictures);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -42,6 +32,7 @@ class PictureController extends Controller
     {
         $validateData = $request->validated();
         $newPicture = new Picture($validateData);
+        $newPicture->setRawAttributes($validateData);
         $newPicture->save();
         return response()->json($newPicture, Response::HTTP_CREATED);
     }
@@ -54,20 +45,7 @@ class PictureController extends Controller
      */
     public function show(Picture $picture)
     {
-        $picture = Picture::findOrFail($picture);
-
-        return response()->json($picture);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Picture  $picture
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Picture $picture)
-    {
-        //
+        return response()->json($picture, Response::HTTP_OK);
     }
 
     /**
@@ -79,11 +57,8 @@ class PictureController extends Controller
      */
     public function update(UpdatePictureRequest $request, Picture $picture)
     {
-        $picture = Picture::findOrFail($picture);
-
         $validateData = $request->validated();
-        $picture = new Picture($validateData);
-        $picture->save();
+        $picture->update($validateData);
         return response()->json($picture, Response::HTTP_ACCEPTED);
     }
 
@@ -95,10 +70,7 @@ class PictureController extends Controller
      */
     public function destroy(Picture $picture)
     {
-        $picture = Picture::findOrFail($picture);
-
         $picture->delete();
-
         return response()->json($picture::all());
     }
 }
