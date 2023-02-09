@@ -31,7 +31,7 @@ class DiscountController extends Controller
     public function store(StoreDiscountRequest $request)
     {
         $validateData = $request->validated();
-        $newDiscount = new Discount($validateData);
+        $newDiscount = new Discount();
         $newDiscount->setRawAttributes($validateData);
         $newDiscount->save();
         return response()->json($newDiscount, Response::HTTP_CREATED);

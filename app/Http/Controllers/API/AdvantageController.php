@@ -31,7 +31,7 @@ class AdvantageController extends Controller
     public function store(StoreAdvantageRequest $request)
     {
         $validateData = $request->validated();
-        $newAdvantage = new Advantage($validateData);
+        $newAdvantage = new Advantage();
         $newAdvantage->setRawAttributes($validateData);
         $newAdvantage->save();
         return response()->json($newAdvantage, Response::HTTP_CREATED);

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class RoleController extends Controller
 {
@@ -30,7 +31,8 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $validateData = $request->validated();
-        $newRole = new Role($validateData);
+        $newRole = new Role();
+        $newRole->setRawAttributes($validateData);
         $newRole->save();
         return response()->json($newRole, Response::HTTP_CREATED);
     }
@@ -55,11 +57,9 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        $role = Role::findOrFail($role);
-        $validateData = $request->validated($role);
-        $newRole = new Role($validateData);
-        $newRole->save();
-        return response()->json($newRole, Response::HTTP_ACCEPTED);
+        $validateData = $request->validated();
+        $role->update($validateData);
+        return response()->json($role, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -70,7 +70,6 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role = Role::findOrFail($role);
         $role->delete();
         return response()->json($role::all());
 

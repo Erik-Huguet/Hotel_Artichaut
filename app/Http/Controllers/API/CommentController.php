@@ -31,7 +31,7 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         $validateData = $request->validated();
-        $newComment = new Comment($validateData);
+        $newComment = new Comment();
         $newComment->setRawAttributes($validateData);
         $newComment->save();
         return response()->json($newComment, Response::HTTP_CREATED);
