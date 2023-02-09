@@ -16,7 +16,7 @@ class TypeChamber extends Model
      */
     protected $fillable = [
         'id',
-        'type_chamber',
+        'typeChamber',
         'price',
     ];
 
