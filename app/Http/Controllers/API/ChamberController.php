@@ -74,10 +74,6 @@ class ChamberController extends Controller
     {
         $chamber = Chamber::findOrFail($chamber);
         $chamber->delete();
-        return response()->json(
-            //$chamber->all()
-            'coucou est fait'
-
-        );
+        return response()->json($chamber::all());
     }
 }
