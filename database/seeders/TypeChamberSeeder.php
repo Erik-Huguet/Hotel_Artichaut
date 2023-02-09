@@ -15,6 +15,9 @@ class TypeChamberSeeder extends Seeder
      */
     public function run()
     {
-        TypeChamber::factory(3)->create();
+        TypeChamber::create(['typeChamber'=>'standard','price'=>fake()->randomFloat(1, 80, 200)]);
+        TypeChamber::create(['typeChamber'=> 'luxe', 'price'=>fake()->randomFloat(1, 80, 200)]);
+        TypeChamber::create(['typeChamber'=>'suite', 'price'=>fake()->randomFloat(1, 80, 200)]);
+
     }
 }

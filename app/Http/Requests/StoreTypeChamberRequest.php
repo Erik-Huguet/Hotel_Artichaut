@@ -11,9 +11,9 @@ class StoreTypeChamberRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,11 +21,11 @@ class StoreTypeChamberRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            'typeChamber' => 'required|max:50',
-            'price' => 'required|integer',
+            'typeChamber' => ['required', 'max:50'],
+            'price' => ['required'],
         ];
     }
 }

@@ -11,9 +11,9 @@ class UpdateVideoRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,12 +24,12 @@ class UpdateVideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'title_fe_video' => 'require|max:255',
-            'describe_fr_video' => 'require|max:255',
-            'title_ang_video' => 'require|max:255',
-            'describe_ang_video' => 'require|max:255',
-            'url_video' => 'require|max:255',
-            'fk_Users_Videos' => 'required',
+            'title_fe_video' => ['required', 'max:255'],
+            'describe_fr_video' => ['required', 'max:255'],
+            'title_ang_video' => ['required', 'max:255'],
+            'describe_ang_video' => ['required', 'max:255'],
+            'url_video' => ['required', 'url'],
+            'fk_Users_Videos' => ['required']
         ];
     }
 }
