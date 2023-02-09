@@ -39,7 +39,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('news', NewsController::class);
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
-    Route::apiResource('types_chambers', TypeChamberController::class);
+    Route::apiResource('type_chambers', TypeChamberController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
 });
