@@ -13,7 +13,7 @@ class StoreChamberRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,9 +24,7 @@ class StoreChamberRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_chamber' => 'required',
-            'created_at' => 'datetime(now())',
-            'updated_at' => 'datetime()',
+            'number_chamber' => ['required'],
             'fk_Chambers_TypeChamber' => 'required',
         ];
     }

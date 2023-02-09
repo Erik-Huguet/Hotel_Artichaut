@@ -31,6 +31,7 @@ class AdvantageController extends Controller
     {
         $validateData = $request->validated();
         $newAdvantage = new Advantage($validateData);
+        $newAdvantage->setRawAttributes($validateData);
         $newAdvantage->save();
         return response()->json($newAdvantage, Response::HTTP_CREATED);
     }
@@ -55,11 +56,9 @@ class AdvantageController extends Controller
      */
     public function update(UpdateAdvantageRequest $request, Advantage $advantage)
     {
-        $advantage = Advantage::findOrFail($advantage);
+        $validateData = $request->validated();
 
-        $validateData = $request->validated($advantage);
-        $advantage = new Advantage($validateData);
-        $advantage->save();
+        $advantage->update($validateData);
         return response()->json($advantage, Response::HTTP_ACCEPTED);
     }
 
@@ -71,10 +70,8 @@ class AdvantageController extends Controller
      */
     public function destroy(Advantage $advantage)
     {
-        $advantage = Advantage::findOrFail($advantage);
 
         $advantage->delete();
-
         return response()->json($advantage::all());
     }
 }

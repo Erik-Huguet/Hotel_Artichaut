@@ -10,7 +10,6 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,10 +37,11 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('advantages', AdvantageController::class);
 });
 
-//Route::apiResource('chambers', ChamberController::class);
-Route::group(['prefix' => 'v1'], function() {
-    Route::apiResource('chambers', ChamberController::class);
-});
+    //Route::group(['prefix' => 'v1'], function() {
+     Route::apiResource('chambers', ChamberController::class);
+//Route::get('/chambers', [ChamberController::class, 'index']);
+//Route::post('/chambers', [ChamberController::class, 'store']);
+//Route::delete('/chambers', [ChamberController::class, 'destroy']);
 
 //Route::apiResource('comments',CommentController::class);
 Route::group(['prefix' => 'v1'],function() {
