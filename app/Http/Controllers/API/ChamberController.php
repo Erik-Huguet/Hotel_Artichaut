@@ -58,11 +58,8 @@ class ChamberController extends Controller
      */
     public function update(UpdateChamberRequest $request, Chamber $chamber)
     {
-
         $validateData = $request->validated();
-
         $chamber->update($validateData);
-
         return response()->json($chamber, Response::HTTP_ACCEPTED);
     }
 

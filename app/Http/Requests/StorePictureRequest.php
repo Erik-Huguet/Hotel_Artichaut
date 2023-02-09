@@ -24,7 +24,11 @@ class StorePictureRequest extends FormRequest
     public function rules():array
     {
         return [
-            'url_picture' => 'required',
+            'url_picture' => ['required', 'url'],
+            'fk_Pictures_Advantages' => ['required'],
+            'fk_Pictures_Chambers' => ['required'],
+            'fk_Pictures_Discounts' => ['required'],
+            'fk_Pictures_News' => ['required'],
         ];
     }
 }
