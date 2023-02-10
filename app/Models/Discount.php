@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'title_fr_discount',
         'title_ang_discount',

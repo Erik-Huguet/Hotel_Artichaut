@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('chambers', function (Blueprint $table) {
+        Schema::create('advantages', function (Blueprint $table) {
             $table->id();
-            $table->integer('number_chamber');
+            $table->string('title_fr_adv');
+            $table->longText('describe_fr_adv');
+            $table->string('title_ang_adv');
+            $table->longText('describe_ang_adv');
+            $table->string('icon_adv');
+            $table->integer('position_icon_adv');
             $table->timestamps();
-            $table->foreignId('fk_Chamber_Type');
+            $table->foreignId('fk_Users_advantages');
         });
     }
 
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chamber');
+        Schema::dropIfExists('advantages');
     }
 };

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreVideoRequest;
+use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Video;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class VideoController extends Controller
 {
@@ -15,119 +18,59 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $video = Video::all();
-
-        return response()->json($video);
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $Video = Video::all();
+        return response()->json($Video);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreVideoRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreVideoRequest $request)
     {
-        $request->validate([
-            'title_fe_video' => 'require|max:255',
-            'describe_fr_video' => 'require|max:255',
-            'title_eng_video' => 'require|max:255',
-            'describe_eng_video' => 'require|max:255',
-            'url_video' => 'require|max:255',
-            'fk_Users_Videos' => 'required',
-        ]);
-
-        $newVideo = new Video([
-            'title_fr_video' => $request->get('title_fr_video'),
-            'describe_fr_video' => $request->get('describe_fr_video'),
-            'title_eng_video' => $request->get('title_eng_video'),
-            'describe_eng_video' => $request->get('describe_eng_video'),
-            'url_video' => $request->get('url_video'),
-            'fk_Users_Videos' => $request->get('fk_Users_Videos'),
-        ]);
+        $validateData = $request->validated();
+        $newVideo = new Video();
+        $newVideo->setRawAttributes($validateData);
         $newVideo->save();
-        return response()->json($newVideo);
+        return response()->json($newVideo, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Video $video)
     {
-        $video = Video::findOrFail($id);
-
-        return response()->json($video);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($video, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateVideoRequest  $request
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateVideoRequest $request, Video $video)
     {
-        $video = Video::findOrFail($id);
-
-        $request->validate([
-            'title_fe_video' => 'require|max:255',
-            'describe_fr_video' => 'require|max:255',
-            'title_eng_video' => 'require|max:255',
-            'describe_eng_video' => 'require|max:255',
-            'url_video' => 'require|max:255',
-            'fk_Users_Videos' => 'required',
-        ]);
-
-        $newVideo = new Video([
-            'title_fr_video' => $request->get('title_fr_video'),
-            'describe_fr_video' => $request->get('describe_fr_video'),
-            'title_eng_video' => $request->get('title_eng_video'),
-            'describe_eng_video' => $request->get('describe_eng_video'),
-            'url_video' => $request->get('url_video'),
-            'fk_Users_Videos' => $request->get('fk_Users_Videos'),
-        ]);
-        $newVideo->save();
-        return response()->json($newVideo);
+        $validateData = $request->validated($video);
+        $video->update($validateData);
+        return response()->json($video, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Video $video)
     {
-        $video = Video::findOrFail($id);
-
         $video->delete();
-
         return response()->json($video::all());
     }
 }

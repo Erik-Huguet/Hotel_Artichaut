@@ -9,12 +9,19 @@ class Chamber extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+        'number_chamber',
+        'fk_Chambers_TypeChamber',
+    ];
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function type_chamber()
+    public function typechamber()
     {
-        return $this->belongsTo(Type_chamber::class, 'fk_Chamber_Type');
+        return $this->belongsTo(TypeChamber::class, 'fk_Chambers_TypeChamber');
     }
 
     /**

@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'title_fr_comment' ,
+
+    protected $fillable = [
+        'title_fr_comment',
         'discribe_fr_comment',
-        'title_ang_comment' ,
+        'title_ang_comment',
         'discribe_ang_comment',
     ];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('type_chambers', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('typeChamber');
             $table->float('price');
             $table->timestamps();
         });

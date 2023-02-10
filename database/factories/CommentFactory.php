@@ -19,6 +19,7 @@ class CommentFactory extends Factory
         $arrayValues = [1,2,3,4,5];
         $arrayValuesChamber = [1,2,3,4,5,6,7,8,9,10];
 
+
         return [
             'title_fr_comment'=> fake()->name(),
             'title_ang_comment'=> fake()->name(),
@@ -30,11 +31,3 @@ class CommentFactory extends Factory
         ];
     }
 }
-
-
-/**   $table->id();
-$table->string('title_fr_comment',80);
-$table->longText('describe_fr_comment');
-$table->string('title_ang_comment', 80);
-$table->integer('rating')->nullable();
-$table->timestamps(); */

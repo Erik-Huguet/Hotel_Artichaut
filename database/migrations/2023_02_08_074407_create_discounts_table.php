@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('advantages', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-
-            $table->string('title_fr_adv');
-            $table->longText('describe_fr_adv');
-            $table->string('title_ang_adv');
-            $table->longText('describe_ang_adv');
-            $table->string('icon_adv');
-            $table->integer('position_icon_adv');
+            $table->string('title_fr_discount');
+            $table->string('title_ang_discount');
+            $table->longText('describe_fr_discount');
+            $table->longText('describe_ang_discount');
+            $table->string('code_discount');
+            $table->foreignId('fk_Users_Discounts');
             $table->timestamps();
-            $table->foreignId('fk_Users_advantages');
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advantage');
+        Schema::dropIfExists('discounts');
     }
 };

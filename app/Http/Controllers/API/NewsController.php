@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\UpdateNewsRequest;
 use App\Models\News;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class NewsController extends Controller
 {
@@ -16,120 +19,58 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-
         return response()->json($news);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreNewsRequest  $request
      * @return \Illuminate\Http\jsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-        $request->validate([
-            'title_fr_new' => 'required|max:50',
-            'describe_fr_new' => 'required',
-            'title_ang_new' => 'required|max:50',
-            'describe_ang_new' => 'required',
-            'icon_new' => 'required',
-            'position_icon' => 'required'
-        ]);
-
-        $newNews = new News([
-            'title_fr_new' => $request->get('title_fr_new'),
-            'describe_fr_new' => $request->get('describe_fr_new'),
-            'title_ang_new' => $request->get('title_ang_new'),
-            'describe_ang_new' => $request->get('describe_ang_new'),
-            'icon_new' => $request->get('icon_new'),
-            'position_icon' => $request->get('position_icon')
-        ]);
-
+        $validateData = $request->validated();
+        $newNews = new News();
+        $newNews->setRawAttributes($validateData);
         $newNews->save();
-
-        return response()->json($newNews);
+        return response()->json($newNews, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function show($id)
+    public function show(News $news)
     {
-        $news = News::findOrFail($id);
-
-        return response()->json($news);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($news, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateNewsRequest  $request
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateNewsRequest $request, News $news)
     {
-        $news = News::findOrFail($id);
-
-        $request->validate([
-            'title_fr_new' => 'required|max:50',
-            'describe_fr_new' => 'required',
-            'title_ang_new' => 'required|max:50',
-            'describe_ang_new' => 'required',
-            'icon_new' => 'required',
-            'position_icon' => 'required'
-        ]);
-
-        $news->title_fr_new = $request->get('title_fr_new');
-        $news->describe_fr_new = $request->get('describe_fr_new');
-        $news->title_ang_new = $request->get('title_ang_new');
-        $news->describe_ang_new = $request->get('describe_ang_new');
-        $news->icon_new = $request->get('icon_new');
-        $news->position_icon = $request->get('position_icon');
-
-
-        $news->save();
-
-        return response()->json($news);
+        $validateData = $request->validated();
+        $news->update($validateData);
+        return response()->json($news, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        $news = News::findOrFail($id);
-
         $news->delete();
-
         return response()->json($news::all());
     }
 }

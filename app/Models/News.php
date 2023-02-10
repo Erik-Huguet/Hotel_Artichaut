@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
-
-
+    protected $fillable = [
+        'title_fr_new',
+        'title_ang_new',
+        'describe_fr_new',
+        'describe_ang_new',
+        'position_icon_new',
+        'icon_new'
+    ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */

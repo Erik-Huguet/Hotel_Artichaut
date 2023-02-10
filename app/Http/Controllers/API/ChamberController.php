@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreChamberRequest;
+use App\Http\Requests\UpdateChamberRequest;
 use App\Models\Chamber;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
 
 class ChamberController extends Controller
 {
@@ -15,79 +18,60 @@ class ChamberController extends Controller
      */
     public function index()
     {
-        $chambers = Chamber::all();
-        return response()->json($chambers);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $chamber = Chamber::all();
+        return response()->json($chamber);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreChamberRequest  $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreChamberRequest $request)
     {
-        //
+        $validateData = $request->validated();
+        $newChamber = new Chamber();
+        $newChamber->setRawAttributes($validateData);
+        $newChamber->save();
+        return response()->json($newChamber, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Chamber  $chamber
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Chamber $chamber)
     {
-        $chamber = Chamber::findOrFail($id);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Detail data post',
-            'data' => $chamber
-        ], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($chamber, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\UpdateChamberRequest  $request
+     * @param  \App\Models\Chamber  $chamber
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateChamberRequest $request, Chamber $chamber)
     {
-        //
+        $validateData = $request->validated();
+        $chamber->update($validateData);
+        return response()->json($chamber, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Chamber  $chamber
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Chamber $chamber)
     {
-        //
+        $chamber->delete();
+        return response()->json($chamber::all());
     }
 }

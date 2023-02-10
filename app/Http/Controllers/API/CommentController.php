@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class CommentController extends Controller
 {
@@ -15,111 +18,59 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
-
-        return response()->json($comments);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $comment = Comment::all();
+        return response()->json($comment);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreCommentRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
-        $request->validate([
-            'title_fr_comment' => 'required|max:50',
-            'discribe_fr_comment' => 'required',
-            'title_ang_comment' => 'required|max:50',
-            'discribe_ang_comment' => 'required',
-        ]);
-
-        $newComment = new Comment([
-            'title_fr_comment' => $request->get('title_fr_comment'),
-            'discribe_fr_comment' => $request->get('discribe_fr_comment'),
-            'title_ang_comment' => $request->get('title_ang_comment'),
-            'discribe_ang_comment' => $request->get('discribe_ang_comment')
-        ]);
-
+        $validateData = $request->validated();
+        $newComment = new Comment();
+        $newComment->setRawAttributes($validateData);
         $newComment->save();
-
-        return response()->json($newComment);
+        return response()->json($newComment, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        $comment = Comment::findOrFail($id);
-
-        return response()->json($comment);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json($comment, Response::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateCommentRequest  $request
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        $comment = Comment::findOrfail($id);
-
-        $request->validate([
-            'title_fr_comment' => 'required|max:50',
-            'discribe_fr_comment' => 'required',
-            'title_ang_comment' => 'required|max:50',
-            'discribe_ang_comment' => 'required',
-        ]);
-            $comment->title_fr_comment = $request->get('title_fr_comment');
-            $comment->title_ang_comment = $request->get('title_ang_comment');
-            $comment->discribe_fr_comment = $request->get('discribe_fr_comment');
-            $comment->discrib_ang_comment = $request->get('discrib_ang_comment');
-
-            $comment->save();
-
-
-            return response()->json($comment);
+        $validateData = $request->validated();
+        $comment->update($validateData);
+        return response()->json($comment, Response::HTTP_ACCEPTED);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        $comment = Comment::findOrFail($id);
         $comment->delete();
-
         return response()->json($comment::all());
     }
 }
