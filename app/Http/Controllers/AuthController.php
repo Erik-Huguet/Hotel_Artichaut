@@ -6,9 +6,10 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
@@ -18,18 +19,36 @@ class AuthController extends Controller
      */
     public function Register(Request $request)
     {
-        $validator = Validator::class->make($request->all(),[
-            StoreUserRequest::class->validated($request)
-        ]);
+        try{
+            $validator = Validator::make($request->all(), [
+                'email' => ['required','unique', 'email'],
+                'password' => ['required']
+            ]);
 
-        if($validator->fails())
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validator->errors()
+                ], 401);
+            }
+
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Created Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+
+        } catch (\Throwable $th)
         {
-            return response()->json([ Response::HTTP_BAD_REQUEST ]);
+            return response()->json(['status' => false,
+            'message' => $th->getMessage()], 500);
         }
-        $user = new User();
-        $user->setRawAttributes($request->validate(StoreUserRequest::class->rules()));
-        $user->save();
-        return response()->json(Response::HTTP_CREATED);
     }
 
     /**
@@ -38,27 +57,42 @@ class AuthController extends Controller
      */
     public function login(request $request)
     {
-        $validator = Validator::class->make($request->all(),[
-            StoreUserRequest::class->validated($request)
-        ]);
+        try {
+            $validateUser = Validator::make($request->all(),
+                [
+                    'email' => ['required', 'email'],
+                    'password' => ['required']
+                ]);
 
-        if(!$validator->fails())
-        {
-            return response()->json( Response::HTTP_BAD_REQUEST);
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
+
+            if(!Auth::attempt($request->only(['email', 'password']))){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Email & Password does not match with our record.',
+                ], 401);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged In Successfully',
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+            ], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
         }
-
-        $credentials = request(['email', 'password']);
-
-        if(!Auth::attempt($credentials))
-        {
-            return response()->json(Response::HTTP_UNAUTHORIZED);
-        }
-
-        $user = User::where('email', $request->email)->first();
-        $tokenResult = $user->createToken('authToken')->plainTextToken;
-
-        return response()->json([Response::HTTP_OK, 'token'=> $tokenResult ]);
-
     }
 
     /**
