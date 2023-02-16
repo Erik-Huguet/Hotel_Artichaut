@@ -19,13 +19,16 @@ class AuthController extends Controller
      */
     public function Register(Request $request)
     {
+
         try{
             $validator = Validator::make($request->all(), [
-                'email' => ['required','unique', 'email'],
+                'pseudo' => ['required','unique:users'],
+                'email' => ['required','unique:users'],
                 'password' => ['required']
-            ]);
-
+            ]) ;
+           // var_dump($validator);
             if ($validator->fails()) {
+
                 return response()->json([
                     'status' => false,
                     'message' => 'validation error',
@@ -34,8 +37,10 @@ class AuthController extends Controller
             }
 
             $user = User::create([
+                'pseudo' => $request->pseudo,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
+
             ]);
 
             return response()->json([
@@ -60,8 +65,8 @@ class AuthController extends Controller
         try {
             $validateUser = Validator::make($request->all(),
                 [
-                    'email' => ['required', 'email'],
-                    'password' => ['required']
+                    'email' => 'required',
+                    'password' => 'required'
                 ]);
 
             if($validateUser->fails()){
@@ -73,6 +78,7 @@ class AuthController extends Controller
             }
 
             if(!Auth::attempt($request->only(['email', 'password']))){
+                var_dump($request->only(['email', 'password']));
                 return response()->json([
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',

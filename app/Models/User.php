@@ -27,7 +27,8 @@ class User extends Authenticatable
         'pseudo',
         'email',
         'phone',
-        'avatar_user'
+        'avatar_user',
+        'password',
     ];
 
     /**
