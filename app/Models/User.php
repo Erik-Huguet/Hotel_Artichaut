@@ -29,6 +29,7 @@ class User extends Authenticatable
         'phone',
         'avatar_user',
         'password',
+        'fk_Users_Roles'
     ];
 
     /**
@@ -50,6 +51,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin()
+    {
+        var_dump($this->fk_Users_Roles === Role::class->type_role("admin"));
+        return $this->fk_Users_Roles === Role::class->type_role("admin");
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
@@ -57,7 +64,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'fk_Users_Roles');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

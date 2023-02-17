@@ -28,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
+Route::post('/me',  [AuthController::class, "me"]);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -35,8 +38,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-//Route::apiResource('comments',CommentController::class);
 Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('advantages', AdvantageController::class);
     Route::apiResource('chambers', ChamberController::class);
@@ -49,7 +50,6 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
+
 });
-
-
 

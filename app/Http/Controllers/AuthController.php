@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,6 @@ class AuthController extends Controller
      */
     public function Register(Request $request)
     {
-
         try{
             $validator = Validator::make($request->all(), [
                 'pseudo' => ['required','unique:users'],
@@ -39,14 +39,15 @@ class AuthController extends Controller
             $user = User::create([
                 'pseudo' => $request->pseudo,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'token' => User::class->createToken("API TOKEN")->plainTextToken,
 
             ]);
 
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
+
             ], 200);
 
         } catch (\Throwable $th)
@@ -62,44 +63,33 @@ class AuthController extends Controller
      */
     public function login(request $request)
     {
-        try {
-            $validateUser = Validator::make($request->all(),
-                [
-                    'email' => 'required',
-                    'password' => 'required'
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+
+            if (Auth::attempt($credentials)) {
+              //  $request->session()->regenerate();
+
+                $user = User::where('email', $request->email)->first();
+                $token = $user->createToken("API TOKEN")->plainTextToken;
+
+                return response()->json([
+                    "acces_token" => $token,
+                        'token_type' =>'Bearer',
+                    'message'=> 'ok logger',
                 ]);
-
-            if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
             }
 
-            if(!Auth::attempt($request->only(['email', 'password']))){
-                var_dump($request->only(['email', 'password']));
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
-            }
-
-            $user = User::where('email', $request->email)->first();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
-            ], 200);
-
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage()
-            ], 500);
-        }
+            return response()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
     }
+    public function me(Request $request)
+    {
+        return $request->user();
+    }
+
 
     /**
      * @param Request $request
@@ -107,8 +97,12 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->deleted();
-        return response()->json([Response::HTTP_OK, 'message'=> 'token deleted']);
+
+        // Auth::logout();
+       auth()->user()->tokens()->delete();
+       // $request->session()->invalidate();
+        //
+        return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
 
 }

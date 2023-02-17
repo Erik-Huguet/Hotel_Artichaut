@@ -13,6 +13,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
+        //var_dump('hello');
         return true;
     }
 

@@ -7,7 +7,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -19,9 +21,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('log')->only('index');
-        $this->middleware('subscribed')->except('store');
+       // $this->middleware('auth');
+       // $this->middleware('log')->only('index');
+      //  $this->middleware('subscribed')->except('store');
     }
 
     /**
@@ -31,6 +33,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         $user = User::all();
         return response()->json($user);
     }
@@ -57,6 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('viewAny', User::class);
         return response()->json($user, Response::HTTP_OK);
     }
 
@@ -69,6 +73,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        $this->authorize('update_user');
         $user = User::findOrFail($user);
         $validateData = $request->validated($user);
         $newUser = new User($validateData);
@@ -88,4 +93,5 @@ class UserController extends Controller
         $user->delete();
         return response()->json($user::all());
     }
+
 }
