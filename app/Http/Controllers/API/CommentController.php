@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class CommentController extends Controller
 {
@@ -30,7 +31,8 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         $validateData = $request->validated();
-        $newComment = new Comment($validateData);
+        $newComment = new Comment();
+        $newComment->setRawAttributes($validateData);
         $newComment->save();
         return response()->json($newComment, Response::HTTP_CREATED);
     }
@@ -55,11 +57,8 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        $comment = Comment::findOrFail($comment);
-
         $validateData = $request->validated();
-        $comment = new Comment($validateData);
-        $comment->save();
+        $comment->update($validateData);
         return response()->json($comment, Response::HTTP_ACCEPTED);
     }
 
@@ -71,10 +70,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment = Comment::findOrFail($comment);
-
         $comment->delete();
-
         return response()->json($comment::all());
     }
 }

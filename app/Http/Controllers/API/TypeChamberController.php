@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeChamberRequest;
 use App\Http\Requests\UpdateTypeChamberRequest;
 use App\Models\TypeChamber;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class TypeChamberController extends Controller
 {
@@ -30,7 +31,8 @@ class TypeChamberController extends Controller
     public function store(StoreTypeChamberRequest $request)
     {
         $validateData = $request->validated();
-        $newTypeChamber = new TypeChamber($validateData);
+        $newTypeChamber = new TypeChamber();
+        $newTypeChamber->setRawAttributes($validateData);
         $newTypeChamber->save();
         return response()->json($newTypeChamber, Response::HTTP_CREATED);
     }
@@ -38,7 +40,7 @@ class TypeChamberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TypeChamber  $typeChamber
+     * @param  \App\Models\TypeChamber $typeChamber
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(TypeChamber $typeChamber)
@@ -55,10 +57,9 @@ class TypeChamberController extends Controller
      */
     public function update(UpdateTypeChamberRequest $request, TypeChamber $typeChamber)
     {
-        $typeChamber = TypeChamber::findOrFail($typeChamber);
         $validateData = $request->validated($typeChamber);
-        $newTypeChamber = new TypeChamber($validateData);
-        return response()->json($newTypeChamber, Response::HTTP_ACCEPTED);
+        $typeChamber->update($validateData);
+        return response()->json($typeChamber, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -69,7 +70,6 @@ class TypeChamberController extends Controller
      */
     public function destroy(TypeChamber $typeChamber)
     {
-        $typeChamber = TypeChamber::findOrFail($typeChamber);
         $typeChamber->delete();
         return response()->json($typeChamber::all());
     }

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Models\News;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class NewsController extends Controller
 {
@@ -18,7 +19,6 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-
         return response()->json($news);
     }
 
@@ -31,7 +31,8 @@ class NewsController extends Controller
     public function store(StoreNewsRequest $request)
     {
         $validateData = $request->validated();
-        $newNews = new News($validateData);
+        $newNews = new News();
+        $newNews->setRawAttributes($validateData);
         $newNews->save();
         return response()->json($newNews, Response::HTTP_CREATED);
     }
@@ -56,11 +57,8 @@ class NewsController extends Controller
      */
     public function update(UpdateNewsRequest $request, News $news)
     {
-        $news = News::findOrFail($news);
-
         $validateData = $request->validated();
-        $news = new News($validateData);
-        $news->save();
+        $news->update($validateData);
         return response()->json($news, Response::HTTP_ACCEPTED);
     }
 
@@ -72,10 +70,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        $news = News::findOrFail($news);
-
         $news->delete();
-
         return response()->json($news::all());
     }
 }

@@ -11,9 +11,9 @@ class UpdateCommentRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,13 +21,16 @@ class UpdateCommentRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            'title_fr_comment' => 'required|max:50',
-            'discribe_fr_comment' => 'required',
-            'title_ang_comment' => 'required|max:50',
-            'discribe_ang_comment' => 'required',
+            'title_fr_comment' => ['required','max:50'],
+            'describe_fr_comment' => ['required', 'max:300'],
+            'title_ang_comment' => ['required','max:50'],
+            'describe_ang_comment' => ['required', 'max:300'],
+            'rating' => ['required'],
+            'fk_Users_Comments' => ['required'],
+            'fk_Chambers_Comments' => ['required']
         ];
     }
 }

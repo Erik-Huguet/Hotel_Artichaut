@@ -9,6 +9,17 @@ class Advantage extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+
+            'title_fr_adv' ,
+            'discribe_fr_adv' ,
+            'title_ang_adv' ,
+            'discribe_ang_adv' ,
+            'icon_adv',
+            'position_icon',
+            'fk_Users_Avantages',
+        ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */

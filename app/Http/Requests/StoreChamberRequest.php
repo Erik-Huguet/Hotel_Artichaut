@@ -11,9 +11,9 @@ class StoreChamberRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,12 +21,10 @@ class StoreChamberRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            'number_chamber' => 'required',
-            'created_at' => 'datetime(now())',
-            'updated_at' => 'datetime()',
+            'number_chamber' => ['required'],
             'fk_Chambers_TypeChamber' => 'required',
         ];
     }

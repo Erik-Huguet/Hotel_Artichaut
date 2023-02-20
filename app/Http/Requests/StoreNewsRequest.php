@@ -11,9 +11,9 @@ class StoreNewsRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize():bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,15 +21,16 @@ class StoreNewsRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():array
     {
         return [
-            'title_fr_new' => 'required|max:50',
-            'describe_fr_new' => 'required',
-            'title_ang_new' => 'required|max:50',
-            'describe_ang_new' => 'required',
-            'icon_new' => 'required',
-            'position_icon' => 'required'
+            'title_fr_new' => ['required', 'max:50'],
+            'describe_fr_new' => ['required'],
+            'title_ang_new' => ['required', 'max:50'],
+            'describe_ang_new' => ['required'],
+            'icon_new' => ['required', 'url'],
+            'position_icon_new' => ['required'],
+            'fk_Users_News' => ['required'] ,
         ];
     }
 }

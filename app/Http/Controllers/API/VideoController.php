@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Video;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class VideoController extends Controller
 {
@@ -30,7 +31,8 @@ class VideoController extends Controller
     public function store(StoreVideoRequest $request)
     {
         $validateData = $request->validated();
-        $newVideo = new Video($validateData);
+        $newVideo = new Video();
+        $newVideo->setRawAttributes($validateData);
         $newVideo->save();
         return response()->json($newVideo, Response::HTTP_CREATED);
     }
@@ -55,11 +57,9 @@ class VideoController extends Controller
      */
     public function update(UpdateVideoRequest $request, Video $video)
     {
-        $video = Video::findOrFail($video);
         $validateData = $request->validated($video);
-        $newVideo = new Video($validateData);
-        $newVideo->save();
-        return response()->json($newVideo, Response::HTTP_ACCEPTED);
+        $video->update($validateData);
+        return response()->json($video, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -70,7 +70,6 @@ class VideoController extends Controller
      */
     public function destroy(Video $video)
     {
-        $video = Video::findOrFail($video);
         $video->delete();
         return response()->json($video::all());
     }

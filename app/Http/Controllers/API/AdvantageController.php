@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdvantageRequest;
 use App\Http\Requests\UpdateAdvantageRequest;
 use App\Models\Advantage;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class AdvantageController extends Controller
 {
@@ -30,7 +31,8 @@ class AdvantageController extends Controller
     public function store(StoreAdvantageRequest $request)
     {
         $validateData = $request->validated();
-        $newAdvantage = new Advantage($validateData);
+        $newAdvantage = new Advantage();
+        $newAdvantage->setRawAttributes($validateData);
         $newAdvantage->save();
         return response()->json($newAdvantage, Response::HTTP_CREATED);
     }
@@ -55,11 +57,8 @@ class AdvantageController extends Controller
      */
     public function update(UpdateAdvantageRequest $request, Advantage $advantage)
     {
-        $advantage = Advantage::findOrFail($advantage);
-
-        $validateData = $request->validated($advantage);
-        $advantage = new Advantage($validateData);
-        $advantage->save();
+        $validateData = $request->validated();
+        $advantage->update($validateData);
         return response()->json($advantage, Response::HTTP_ACCEPTED);
     }
 
@@ -71,10 +70,8 @@ class AdvantageController extends Controller
      */
     public function destroy(Advantage $advantage)
     {
-        $advantage = Advantage::findOrFail($advantage);
 
         $advantage->delete();
-
         return response()->json($advantage::all());
     }
 }

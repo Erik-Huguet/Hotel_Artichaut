@@ -11,6 +11,10 @@ class Picture extends Model
 
     protected $fillable = [
         'url_picture',
+        'fk_Pictures_Advantages',
+        'fk_Pictures_Chambers',
+        'fk_Pictures_Discounts',
+        'fk_Pictures_News' ,
 
     ];
 

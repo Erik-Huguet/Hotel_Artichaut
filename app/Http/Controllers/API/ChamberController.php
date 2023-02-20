@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreChamberRequest;
 use App\Http\Requests\UpdateChamberRequest;
 use App\Models\Chamber;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
 
 class ChamberController extends Controller
 {
@@ -17,6 +18,7 @@ class ChamberController extends Controller
      */
     public function index()
     {
+
         $chamber = Chamber::all();
         return response()->json($chamber);
     }
@@ -24,14 +26,14 @@ class ChamberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreChamberRequest  $request
+     * @param  StoreChamberRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreChamberRequest $request)
     {
-
         $validateData = $request->validated();
-        $newChamber = new Chamber($validateData);
+        $newChamber = new Chamber();
+        $newChamber->setRawAttributes($validateData);
         $newChamber->save();
         return response()->json($newChamber, Response::HTTP_CREATED);
     }
@@ -56,11 +58,8 @@ class ChamberController extends Controller
      */
     public function update(UpdateChamberRequest $request, Chamber $chamber)
     {
-        $chamber = Chamber::findOrFail($chamber);
-
-        $validateData = $request->validated($chamber);
-        $chamber = new Chamber($validateData);
-        $chamber->save();
+        $validateData = $request->validated();
+        $chamber->update($validateData);
         return response()->json($chamber, Response::HTTP_ACCEPTED);
     }
 
@@ -72,7 +71,6 @@ class ChamberController extends Controller
      */
     public function destroy(Chamber $chamber)
     {
-        $chamber = Chamber::findOrFail($chamber);
         $chamber->delete();
         return response()->json($chamber::all());
     }

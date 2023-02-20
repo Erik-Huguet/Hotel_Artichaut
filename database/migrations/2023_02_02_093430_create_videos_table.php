@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
+            $table->id();
             $table->string('title_fr_video');
             $table->string('title_ang_video');
             $table->longText('describe_fr_video');

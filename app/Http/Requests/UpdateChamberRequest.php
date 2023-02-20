@@ -13,7 +13,7 @@ class UpdateChamberRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,8 @@ class UpdateChamberRequest extends FormRequest
     public function rules()
     {
         return [
-            'number_chamber' => 'required',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime(now())',
-            'fk_Chambers_TypeChamber' => 'required',
+            'number_chamber' => ['sometimes'],
+            'fk_Chambers_TypeChamber' => 'sometimes',
 
         ];
     }
