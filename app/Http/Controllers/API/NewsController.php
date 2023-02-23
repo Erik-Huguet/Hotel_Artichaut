@@ -31,8 +31,7 @@ class NewsController extends Controller
     public function store(StoreNewsRequest $request)
     {
         $validateData = $request->validated();
-        $newNews = new News();
-        $newNews->setRawAttributes($validateData);
+        $newNews = new News($validateData);
         $newNews->save();
         return response()->json($newNews, Response::HTTP_CREATED);
     }
