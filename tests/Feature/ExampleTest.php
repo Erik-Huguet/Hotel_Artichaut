@@ -2,12 +2,14 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\News;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic test example.
      *
@@ -25,6 +27,22 @@ class ExampleTest extends TestCase
             'fk_Users_News' => 1 ,
         ]);
         $response->assertCreated();
-        $this->assertCount(15, News::all());
+        $this->assertCount(1, News::all());
 }
+    public function test_post_users()
+    {
+        $response = $this->post('api/v1/users', [
+
+            'lastname' => 'il etait une fois',
+            'firstname' => 'à fort fort lointain',
+            'pseudo' => 'un âne parlant',
+            'email' => 'vivant au coté de son meilleur ami',
+            'phone' => 'un ogre au nom de shrek',
+            'avatar_user' => 'qui lui vivant avec sa femme fiona',
+            'password' => 'c\'e"st tout',
+            'fk_Users_Roles' => 'the end',
+        ]);
+        $response->assertCreated();
+        $this->assertCount(1, User::all());
+    }
 }
