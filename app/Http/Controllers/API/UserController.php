@@ -7,7 +7,9 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -57,6 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        //$this->authorize('viewAny', User::class);
         return response()->json($user, Response::HTTP_OK);
     }
 
@@ -69,11 +72,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::findOrFail($user);
-        $validateData = $request->validated($user);
-        $newUser = new User($validateData);
-        $newUser->save();
-        return response()->json($newUser, Response::HTTP_ACCEPTED);
+        $validateData = $request->validated();
+        $user->update($validateData);
+        return response()->json($user, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -84,8 +85,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user = User::findOrFail($user);
         $user->delete();
         return response()->json($user::all());
     }
+
 }

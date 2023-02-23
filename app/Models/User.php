@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
-use http\Client\Request;
+
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
+class User extends Authenticatable
 
-class User extends Model
 {
     use SoftDeletes,HasApiTokens, HasFactory, Notifiable;
 
@@ -27,7 +32,9 @@ class User extends Model
         'pseudo',
         'email',
         'phone',
-        'avatar_user'
+        'avatar_user',
+        'password',
+        'fk_Users_Roles'
     ];
 
     /**
@@ -49,6 +56,13 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
+
+   public function me(User $user, Request $request)
+   {
+       return $user->id === $request->user();
+       // var_dump($this->fk_Users_Roles === Role::class->roles->type_role);
+       // return $this->fk_Users_Roles === Role::class->type_role("admin");
+    }
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -58,7 +72,6 @@ class User extends Model
         return $this->respondWithToken($token);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
@@ -66,7 +79,6 @@ class User extends Model
     {
         return $this->belongsTo(Role::class, 'fk_Users_Roles');
     }
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

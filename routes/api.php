@@ -10,6 +10,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,14 +26,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
 
-    return $request->user();
+Route::group(["middleware"  => ["auth:sanctum", "web"]], function () {
+    //Route::get('/me', [AuthController::class ,'me']);
+    Route::apiResource("/advantages", AdvantageController::class);
 });
 
-//Route::apiResource('comments',CommentController::class);
+Route::delete('/users',[UserController::class, "destroy"]);
+
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//
+//    return $request->user();
+//});
+
+
 Route::group(['prefix' => 'v1'], function() {
-    Route::apiResource('advantages', AdvantageController::class);
+   // Route::apiResource('advantages', AdvantageController::class);
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
     Route::apiResource('discounts', DiscountController::class);
@@ -42,7 +54,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('type_chambers', TypeChamberController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
+    Route::apiResource('logout', AuthController::class);
+
 });
-
-
 
