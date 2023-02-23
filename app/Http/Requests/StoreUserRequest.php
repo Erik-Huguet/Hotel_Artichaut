@@ -25,12 +25,12 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'lastname'=> ['sometime','max:255'],
-            'firstname' => ['sometime','max:255'],
+            'lastname'=> ['nullable','max:255'],
+            'firstname' => ['nullable','max:255'],
             'pseudo' => ['required', 'unique'],
             'email' => ['required','unique'],
-            'phone' => ['sometime', 'max:20'],
-            'avatar_user' => ['sometime', 'max:255'],
+            'phone' => ['nullable', 'max:20'],
+            'avatar_user' => ['nullable', 'max:255'],
             'email_verified_at' => ['nullable'],
             'password' => ['required'],
 

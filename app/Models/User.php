@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -51,10 +52,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin()
-    {
-        var_dump($this->fk_Users_Roles === Role::class->type_role("admin"));
-        return $this->fk_Users_Roles === Role::class->type_role("admin");
+   public function me(User $user, Request $request)
+   {
+       return $user->id === $request->user();
+       // var_dump($this->fk_Users_Roles === Role::class->roles->type_role);
+       // return $this->fk_Users_Roles === Role::class->type_role("admin");
     }
 
     /**

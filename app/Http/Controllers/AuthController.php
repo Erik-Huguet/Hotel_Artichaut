@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
+
 use App\Models\User;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Controllers\Controller;
+
 
 class AuthController extends Controller
 {
@@ -23,10 +23,10 @@ class AuthController extends Controller
         try{
             $validator = Validator::make($request->all(), [
                 'pseudo' => ['required','unique:users'],
-                'email' => ['required','unique:users'],
-                'password' => ['required']
+                'email' => ['required','unique:users.email'],
+                'password' => ['required', ]
             ]) ;
-           // var_dump($validator);
+
             if ($validator->fails()) {
 
                 return response()->json([
@@ -40,20 +40,13 @@ class AuthController extends Controller
                 'pseudo' => $request->pseudo,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'token' => User::class->createToken("API TOKEN")->plainTextToken,
-
             ]);
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Created Successfully',
-
-            ], 200);
+            return response()->json([Response::HTTP_OK ]);
 
         } catch (\Throwable $th)
         {
-            return response()->json(['status' => false,
-            'message' => $th->getMessage()], 500);
+            return response()->json(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -63,28 +56,40 @@ class AuthController extends Controller
      */
     public function login(request $request)
     {
-            $credentials = $request->validate([
-                'email' => ['required', 'email'],
-                'password' => ['required'],
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                //Response::HTTP_NOT_FOUND,
+                'message' => 'Bad email, not match our records.', 404
             ]);
+        }
 
-            if (Auth::attempt($credentials)) {
-              //  $request->session()->regenerate();
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                //Response::HTTP_NOT_FOUND,
+                'message' => 'Bab password.', 401
+                //redirect()->to('login')
+            ]);
+        }
 
-                $user = User::where('email', $request->email)->first();
-                $token = $user->createToken("API TOKEN")->plainTextToken;
+        $token = $user->createToken("API TOKEN")->plainTextToken;
 
-                return response()->json([
-                    "acces_token" => $token,
-                        'token_type' =>'Bearer',
-                    'message'=> 'ok logger',
-                ]);
-            }
+        $remember_me =  $request->has('remember_me');
 
-            return response()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+        return response()->json([
+            "acces_token" => $token,
+            'token_type' => 'Bearer',
+            "message" => 'ok logger',
+            "remember_token" => $remember_me,
+        ]);
     }
+
     public function me(Request $request)
     {
         return $request->user();
@@ -97,11 +102,9 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-
-        // Auth::logout();
-       auth()->user()->tokens()->delete();
-       // $request->session()->invalidate();
-        //
+        $tokenId = Str::before(request()->bearerToken(), '|');
+        //dd($tokenId);
+        auth()->user()->tokens()->where($request->id, $tokenId )->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
 

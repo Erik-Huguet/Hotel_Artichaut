@@ -29,17 +29,22 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
-Route::post('/me',  [AuthController::class, "me"]);
 
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-
-    return $request->user();
+Route::group(["middleware"  => ["auth:sanctum", "web"]], function () {
+    //Route::get('/me', [AuthController::class ,'me']);
+    Route::apiResource("/advantages", AdvantageController::class);
 });
 
+Route::delete('/users',[UserController::class, "destroy"]);
+
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//
+//    return $request->user();
+//});
+
+
 Route::group(['prefix' => 'v1'], function() {
-    Route::apiResource('advantages', AdvantageController::class);
+   // Route::apiResource('advantages', AdvantageController::class);
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
     Route::apiResource('discounts', DiscountController::class);

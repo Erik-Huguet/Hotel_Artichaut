@@ -21,9 +21,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
-       // $this->middleware('log')->only('index');
-      //  $this->middleware('subscribed')->except('store');
+        $this->middleware('auth');
+        $this->middleware('log')->only('index');
+        $this->middleware('subscribed')->except('store');
     }
 
     /**
@@ -33,7 +33,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
         $user = User::all();
         return response()->json($user);
     }
@@ -60,7 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $this->authorize('viewAny', User::class);
+        //$this->authorize('viewAny', User::class);
         return response()->json($user, Response::HTTP_OK);
     }
 
@@ -73,12 +72,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->authorize('update_user');
-        $user = User::findOrFail($user);
-        $validateData = $request->validated($user);
-        $newUser = new User($validateData);
-        $newUser->save();
-        return response()->json($newUser, Response::HTTP_ACCEPTED);
+        $validateData = $request->validated();
+        $user->update($validateData);
+        return response()->json($user, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -89,7 +85,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user = User::findOrFail($user);
         $user->delete();
         return response()->json($user::all());
     }
