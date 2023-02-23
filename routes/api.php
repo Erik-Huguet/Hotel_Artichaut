@@ -26,6 +26,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::group(['prefix' => 'v1'], function() {
+    // Route::apiResource('advantages', AdvantageController::class);
+    Route::apiResource('chambers', ChamberController::class);
+    Route::apiResource('comments', CommentController::class);
+    Route::apiResource('discounts', DiscountController::class);
+    Route::apiResource('news', NewsController::class);
+    Route::apiResource('pictures', PictureController::class);
+    Route::apiResource('roles', RoleController::class);
+    Route::apiResource('type_chambers', TypeChamberController::class);
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('videos', VideoController::class);
+    Route::apiResource('logout', AuthController::class);
+
+});
+
+
+
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
@@ -43,18 +62,4 @@ Route::delete('/users',[UserController::class, "destroy"]);
 //});
 
 
-Route::group(['prefix' => 'v1'], function() {
-   // Route::apiResource('advantages', AdvantageController::class);
-    Route::apiResource('chambers', ChamberController::class);
-    Route::apiResource('comments', CommentController::class);
-    Route::apiResource('discounts', DiscountController::class);
-    Route::apiResource('news', NewsController::class);
-    Route::apiResource('pictures', PictureController::class);
-    Route::apiResource('roles', RoleController::class);
-    Route::apiResource('type_chambers', TypeChamberController::class);
-    Route::apiResource('users', UserController::class);
-    Route::apiResource('videos', VideoController::class);
-    Route::apiResource('logout', AuthController::class);
-
-});
 
