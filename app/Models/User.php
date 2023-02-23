@@ -3,18 +3,22 @@
 namespace App\Models;
 
 
+
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
+
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes,HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -52,11 +56,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
    public function me(User $user, Request $request)
    {
        return $user->id === $request->user();
        // var_dump($this->fk_Users_Roles === Role::class->roles->type_role);
        // return $this->fk_Users_Roles === Role::class->type_role("admin");
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return $this->respondWithToken($token);
     }
 
     /**
