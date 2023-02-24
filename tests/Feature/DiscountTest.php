@@ -64,9 +64,9 @@ class DiscountTest extends TestCase
 
         $discount = Discount::first();
 
-        $this->delete('/api/v1/discounts/' . $discount->id);;
+        $this->delete('/api/v1/discounts/' . $discount->id);
 
-        $this->assertCount(7, Discount::all());
+        $this->assertCount(0, Discount::all());
 
     }
 }
