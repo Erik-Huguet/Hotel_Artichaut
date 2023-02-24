@@ -9,6 +9,12 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class AdvantagePolicy
 {
     use HandlesAuthorization;
+    public function before(User $user, $ability)
+    {
+        if($user->me($user,$ability)){
+            return true;
+        }
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -18,7 +24,7 @@ class AdvantagePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -30,7 +36,7 @@ class AdvantagePolicy
      */
     public function view(User $user, Advantage $advantage)
     {
-        //
+        return false;
     }
 
     /**

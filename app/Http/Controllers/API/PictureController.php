@@ -31,8 +31,7 @@ class PictureController extends Controller
     public function store(StorePictureRequest $request)
     {
         $validateData = $request->validated();
-        $newPicture = new Picture();
-        $newPicture->setRawAttributes($validateData);
+        $newPicture = new Picture($validateData);
         $newPicture->save();
         return response()->json($newPicture, Response::HTTP_CREATED);
     }

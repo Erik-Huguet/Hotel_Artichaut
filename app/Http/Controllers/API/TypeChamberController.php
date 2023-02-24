@@ -31,8 +31,7 @@ class TypeChamberController extends Controller
     public function store(StoreTypeChamberRequest $request)
     {
         $validateData = $request->validated();
-        $newTypeChamber = new TypeChamber();
-        $newTypeChamber->setRawAttributes($validateData);
+        $newTypeChamber = new TypeChamber($validateData);
         $newTypeChamber->save();
         return response()->json($newTypeChamber, Response::HTTP_CREATED);
     }
@@ -57,7 +56,7 @@ class TypeChamberController extends Controller
      */
     public function update(UpdateTypeChamberRequest $request, TypeChamber $typeChamber)
     {
-        $validateData = $request->validated($typeChamber);
+        $validateData = $request->validated();
         $typeChamber->update($validateData);
         return response()->json($typeChamber, Response::HTTP_ACCEPTED);
     }
