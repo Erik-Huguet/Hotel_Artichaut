@@ -47,9 +47,7 @@ class StoreUserRequest extends FormRequest
             'email' => ['required', 'max:255'],
             'phone' => ['required', 'max:20'],
             'avatar_user' => ['required', 'max:255'],
-            'email_verified_at' => ['nullable'],
             'password' => ['require', 'max:255'],
-            'remember_token'=> ['nullable'],
             'fk_Users_Roles' => ['required'],
 >>>>>>> 4873922f43331333606de86c8935ab328dc10b79
         ];
