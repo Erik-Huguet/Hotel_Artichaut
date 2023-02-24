@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use http\Client\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+
+
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes,HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +21,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'id',
+        'lastname',
+        'firstname',
+        'pseudo',
         'email',
-        'password',
+        'phone',
+        'avatar_user'
     ];
 
     /**
@@ -41,4 +48,65 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return $this->respondWithToken($token);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'fk_Users_Roles');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'fk_Users_Comments');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advantage()
+    {
+        return $this->hasMany(Advantage::class, 'fk_Users_Advantages');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function news()
+    {
+        return $this->hasMany(News::class, 'fk_Users_News');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function video()
+    {
+        return $this->hasMany(Video::class, 'fk_Users_Videos');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function discounts()
+    {
+        return $this->hasMany(discount::class, 'fk_Users_Discounts');
+    }
+
 }

@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('chambers', function (Blueprint $table) {
+            $table->id();
+            $table->integer('number_chamber');
             $table->timestamps();
+            $table->foreignId('fk_Chambers_TypeChamber');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('chambers');
     }
 };
