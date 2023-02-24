@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', [AuthController::class, 'register']);
+//Cette méthode à pour objecctif de générer et de renvoyer le token lorsque le mdp et le mail match
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
 
