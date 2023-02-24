@@ -40,7 +40,6 @@ class UpdateUserRequest extends FormRequest
             'email' => ['nullable','unique'],
             'phone' => ['nullable', 'max:20'],
             'avatar_user' => ['nullable', 'max:255'],
-            'email_verified_at' => ['nullable'],
             'password' => ['nullable'],
 
         ];

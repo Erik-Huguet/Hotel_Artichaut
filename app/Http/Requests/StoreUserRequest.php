@@ -27,11 +27,10 @@ class StoreUserRequest extends FormRequest
         return [
             'lastname'=> ['nullable','max:255'],
             'firstname' => ['nullable','max:255'],
-            'pseudo' => ['required', 'unique'],
-            'email' => ['required','unique'],
+            'pseudo' => ['required'],
+            'email' => ['required'],
             'phone' => ['nullable', 'max:20'],
             'avatar_user' => ['nullable', 'max:255'],
-            'email_verified_at' => ['nullable'],
             'password' => ['required'],
         ];
     }
