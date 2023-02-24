@@ -15,13 +15,11 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize():bool
     {
-
         //var_dump('hello');
        // if (!Gate::allows('update-user'))
        // {
         //   return false;
         //}
-
         return true;
     }
 
@@ -33,7 +31,6 @@ class UpdateUserRequest extends FormRequest
     public function rules():array
     {
         return [
-
             'lastname'=> ['nullable','max:255'],
             'firstname' => ['nullable','max:255'],
             'pseudo' => ['nullable', 'unique'],
@@ -42,7 +39,6 @@ class UpdateUserRequest extends FormRequest
             'avatar_user' => ['nullable', 'max:255'],
             'email_verified_at' => ['nullable'],
             'password' => ['nullable'],
-
         ];
     }
 }
