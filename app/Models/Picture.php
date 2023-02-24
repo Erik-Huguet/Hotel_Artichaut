@@ -29,7 +29,7 @@ class Picture extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function chambers()
+    public function chamber()
     {
         return $this->hasMany(Chamber::class, 'fk_Pictures_Chambers');
     }
@@ -37,7 +37,7 @@ class Picture extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function discounts()
+    public function discount()
     {
         return $this->hasMany(Discount::class, 'fk_Pictures_Discounts');
     }

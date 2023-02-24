@@ -20,7 +20,7 @@ class ExampleTest extends TestCase
         $response = $this->post('/api/v1/discounts', [
             'title_fr_discount' => 'Titre français',
             'title_ang_discount' => 'Title English',
-            'describe_fr_discount' => 'Description française',
+            'describe_fr_discount' => 'Description dsqfdfdsdgfdgfsdgf',
             'describe_ang_discount' => 'English description',
             'code_discount' => '1457',
             'fk_Users_Discounts' => 1
@@ -30,21 +30,9 @@ class ExampleTest extends TestCase
         $this->assertCount(1, Discount::all());
 
     }
-    public function test_putd_discount()
-    {
-        $this->put('/api/v1/discounts/2');
-    }
 
     public function test_put_discount()
     {
-        /*$this->post('/api/v1/discounts', [
-            'title_fr_discount' => 'Titre français',
-            'title_ang_discount' => 'Title English',
-            'describe_fr_discount' => 'Description française',
-            'describe_ang_discount' => 'English description',
-            'code_discount' => '1457',
-            'fk_Users_Discounts' => 1
-        ]);*/
         Discount::factory()->create();
         $discount = Discount::first();
 

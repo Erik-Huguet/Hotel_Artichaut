@@ -16,7 +16,7 @@ class TypeChamberFactory extends Factory
      */
     public function definition()
     {
-        $array= ['standad','luxe',' suite'];
+        $array= ['standard','luxe',' suite'];
         return [
             'typeChamber'=>fake()->randomElement($array),
             'price'=>fake()->randomFloat(1, 80, 200),
