@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
+
         'lastname',
         'firstname',
         'pseudo',
@@ -116,7 +116,7 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function discounts()
+    public function discount()
     {
         return $this->hasMany(discount::class, 'fk_Users_Discounts');
     }

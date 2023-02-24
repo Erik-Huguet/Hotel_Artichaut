@@ -11,8 +11,8 @@ class Discount extends Model
     protected $fillable = [
         'title_fr_discount',
         'title_ang_discount',
-        'describe_fr-discount',
-        'describe_ang-discount',
+        'describe_fr_discount',
+        'describe_ang_discount',
         'code_discount',
         'fk_Users_Discounts'
     ];
@@ -27,7 +27,7 @@ class Discount extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pictures()
+    public function picture()
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_Discounts');
     }

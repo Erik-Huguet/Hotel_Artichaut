@@ -10,7 +10,7 @@ class TypeChamber extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+
         'typeChamber',
         'price',
     ];

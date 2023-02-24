@@ -10,11 +10,12 @@ class News extends Model
     use HasFactory;
     protected $fillable = [
         'title_fr_new',
-        'title_ang_new',
         'describe_fr_new',
+        'title_ang_new',
         'describe_ang_new',
+        'icon_new',
         'position_icon_new',
-        'icon_new'
+        'fk_Users_News'
     ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
@@ -28,7 +29,7 @@ class News extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pictures()
+    public function picture()
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_News');
     }
