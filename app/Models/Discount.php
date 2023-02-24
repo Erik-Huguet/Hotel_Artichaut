@@ -11,9 +11,10 @@ class Discount extends Model
     protected $fillable = [
         'title_fr_discount',
         'title_ang_discount',
-        'describe_fr',
-        'describe_ang',
-        'code_discount'
+        'describe_fr-discount',
+        'describe_ang-discount',
+        'code_discount',
+        'fk_Users_Discounts'
     ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo

@@ -1,5 +1,5 @@
 <?php return array (
-  'app' =>
+  'app' => 
   array (
     'name' => 'Laravel',
     'env' => 'local',
@@ -12,11 +12,11 @@
     'faker_locale' => 'en_US',
     'key' => 'base64:yjga88eu03vkHerwdRAapNy6j4h64f2XlWgCI1nppbY=',
     'cipher' => 'AES-256-CBC',
-    'maintenance' =>
+    'maintenance' => 
     array (
       'driver' => 'file',
     ),
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Illuminate\\Auth\\AuthServiceProvider',
       1 => 'Illuminate\\Broadcasting\\BroadcastServiceProvider',
@@ -45,7 +45,7 @@
       24 => 'App\\Providers\\EventServiceProvider',
       25 => 'App\\Providers\\RouteServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'App' => 'Illuminate\\Support\\Facades\\App',
       'Arr' => 'Illuminate\\Support\\Arr',
@@ -88,37 +88,37 @@
       'Vite' => 'Illuminate\\Support\\Facades\\Vite',
     ),
   ),
-  'auth' =>
+  'auth' => 
   array (
-    'defaults' =>
+    'defaults' => 
     array (
       'guard' => 'web',
       'passwords' => 'users',
     ),
-    'guards' =>
+    'guards' => 
     array (
-      'web' =>
+      'web' => 
       array (
         'driver' => 'session',
         'provider' => 'users',
       ),
-      'sanctum' =>
+      'sanctum' => 
       array (
         'driver' => 'sanctum',
         'provider' => NULL,
       ),
     ),
-    'providers' =>
+    'providers' => 
     array (
-      'users' =>
+      'users' => 
       array (
         'driver' => 'eloquent',
         'model' => 'App\\Models\\User',
       ),
     ),
-    'passwords' =>
+    'passwords' => 
     array (
-      'users' =>
+      'users' => 
       array (
         'provider' => 'users',
         'table' => 'password_resets',
@@ -128,18 +128,18 @@
     ),
     'password_timeout' => 10800,
   ),
-  'broadcasting' =>
+  'broadcasting' => 
   array (
     'default' => 'log',
-    'connections' =>
+    'connections' => 
     array (
-      'pusher' =>
+      'pusher' => 
       array (
         'driver' => 'pusher',
         'key' => '',
         'secret' => '',
         'app_id' => '',
-        'options' =>
+        'options' => 
         array (
           'host' => 'api-mt1.pusher.com',
           'port' => '443',
@@ -147,71 +147,71 @@
           'encrypted' => true,
           'useTLS' => true,
         ),
-        'client_options' =>
+        'client_options' => 
         array (
         ),
       ),
-      'ably' =>
+      'ably' => 
       array (
         'driver' => 'ably',
         'key' => NULL,
       ),
-      'redis' =>
+      'redis' => 
       array (
         'driver' => 'redis',
         'connection' => 'default',
       ),
-      'log' =>
+      'log' => 
       array (
         'driver' => 'log',
       ),
-      'null' =>
+      'null' => 
       array (
         'driver' => 'null',
       ),
     ),
   ),
-  'cache' =>
+  'cache' => 
   array (
     'default' => 'file',
-    'stores' =>
+    'stores' => 
     array (
-      'apc' =>
+      'apc' => 
       array (
         'driver' => 'apc',
       ),
-      'array' =>
+      'array' => 
       array (
         'driver' => 'array',
         'serialize' => false,
       ),
-      'database' =>
+      'database' => 
       array (
         'driver' => 'database',
         'table' => 'cache',
         'connection' => NULL,
         'lock_connection' => NULL,
       ),
-      'file' =>
+      'file' => 
       array (
         'driver' => 'file',
         'path' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/framework/cache/data',
       ),
-      'memcached' =>
+      'memcached' => 
       array (
         'driver' => 'memcached',
         'persistent_id' => NULL,
-        'sasl' =>
+        'sasl' => 
         array (
           0 => NULL,
           1 => NULL,
         ),
-        'options' =>
+        'options' => 
         array (
         ),
-        'servers' =>
+        'servers' => 
         array (
-          0 =>
+          0 => 
           array (
             'host' => 'memcached',
             'port' => 11211,
@@ -219,13 +219,13 @@
           ),
         ),
       ),
-      'redis' =>
+      'redis' => 
       array (
         'driver' => 'redis',
         'connection' => 'cache',
         'lock_connection' => 'default',
       ),
-      'dynamodb' =>
+      'dynamodb' => 
       array (
         'driver' => 'dynamodb',
         'key' => '',
@@ -234,47 +234,47 @@
         'table' => 'cache',
         'endpoint' => NULL,
       ),
-      'octane' =>
+      'octane' => 
       array (
         'driver' => 'octane',
       ),
     ),
     'prefix' => 'laravel_cache_',
   ),
-  'cors' =>
+  'cors' => 
   array (
-    'paths' =>
+    'paths' => 
     array (
       0 => 'api/*',
       1 => 'sanctum/csrf-cookie',
     ),
-    'allowed_methods' =>
+    'allowed_methods' => 
     array (
       0 => '*',
     ),
-    'allowed_origins' =>
+    'allowed_origins' => 
     array (
       0 => '*',
     ),
-    'allowed_origins_patterns' =>
+    'allowed_origins_patterns' => 
     array (
     ),
-    'allowed_headers' =>
+    'allowed_headers' => 
     array (
       0 => '*',
     ),
-    'exposed_headers' =>
+    'exposed_headers' => 
     array (
     ),
     'max_age' => 0,
     'supports_credentials' => false,
   ),
-  'database' =>
+  'database' => 
   array (
     'default' => 'mysql',
-    'connections' =>
+    'connections' => 
     array (
-      'sqlite' =>
+      'sqlite' => 
       array (
         'driver' => 'sqlite',
         'url' => NULL,
@@ -282,7 +282,7 @@
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
-      'mysql' =>
+      'mysql' => 
       array (
         'driver' => 'mysql',
         'url' => NULL,
@@ -298,11 +298,11 @@
         'prefix_indexes' => true,
         'strict' => true,
         'engine' => NULL,
-        'options' =>
+        'options' => 
         array (
         ),
       ),
-      'pgsql' =>
+      'pgsql' => 
       array (
         'driver' => 'pgsql',
         'url' => NULL,
@@ -317,7 +317,7 @@
         'search_path' => 'public',
         'sslmode' => 'prefer',
       ),
-      'sqlsrv' =>
+      'sqlsrv' => 
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
@@ -332,15 +332,15 @@
       ),
     ),
     'migrations' => 'migrations',
-    'redis' =>
+    'redis' => 
     array (
       'client' => 'phpredis',
-      'options' =>
+      'options' => 
       array (
         'cluster' => 'redis',
         'prefix' => 'laravel_database_',
       ),
-      'default' =>
+      'default' => 
       array (
         'url' => NULL,
         'host' => 'redis',
@@ -349,7 +349,7 @@
         'port' => '6379',
         'database' => '0',
       ),
-      'cache' =>
+      'cache' => 
       array (
         'url' => NULL,
         'host' => 'redis',
@@ -360,18 +360,18 @@
       ),
     ),
   ),
-  'filesystems' =>
+  'filesystems' => 
   array (
     'default' => 'local',
-    'disks' =>
+    'disks' => 
     array (
-      'local' =>
+      'local' => 
       array (
         'driver' => 'local',
         'root' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/app',
         'throw' => false,
       ),
-      'public' =>
+      'public' => 
       array (
         'driver' => 'local',
         'root' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/app/public',
@@ -379,7 +379,7 @@
         'visibility' => 'public',
         'throw' => false,
       ),
-      's3' =>
+      's3' => 
       array (
         'driver' => 's3',
         'key' => '',
@@ -392,58 +392,58 @@
         'throw' => false,
       ),
     ),
-    'links' =>
+    'links' => 
     array (
       '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/public/storage' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/app/public',
     ),
   ),
-  'hashing' =>
+  'hashing' => 
   array (
     'driver' => 'bcrypt',
-    'bcrypt' =>
+    'bcrypt' => 
     array (
       'rounds' => 10,
     ),
-    'argon' =>
+    'argon' => 
     array (
       'memory' => 65536,
       'threads' => 1,
       'time' => 4,
     ),
   ),
-  'logging' =>
+  'logging' => 
   array (
     'default' => 'stack',
-    'deprecations' =>
+    'deprecations' => 
     array (
       'channel' => NULL,
       'trace' => false,
     ),
-    'channels' =>
+    'channels' => 
     array (
-      'stack' =>
+      'stack' => 
       array (
         'driver' => 'stack',
-        'channels' =>
+        'channels' => 
         array (
           0 => 'single',
         ),
         'ignore_exceptions' => false,
       ),
-      'single' =>
+      'single' => 
       array (
         'driver' => 'single',
         'path' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/logs/laravel.log',
         'level' => 'debug',
       ),
-      'daily' =>
+      'daily' => 
       array (
         'driver' => 'daily',
         'path' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
-      'slack' =>
+      'slack' => 
       array (
         'driver' => 'slack',
         'url' => NULL,
@@ -451,56 +451,56 @@
         'emoji' => ':boom:',
         'level' => 'debug',
       ),
-      'papertrail' =>
+      'papertrail' => 
       array (
         'driver' => 'monolog',
         'level' => 'debug',
         'handler' => 'Monolog\\Handler\\SyslogUdpHandler',
-        'handler_with' =>
+        'handler_with' => 
         array (
           'host' => NULL,
           'port' => NULL,
           'connectionString' => 'tls://:',
         ),
       ),
-      'stderr' =>
+      'stderr' => 
       array (
         'driver' => 'monolog',
         'level' => 'debug',
         'handler' => 'Monolog\\Handler\\StreamHandler',
         'formatter' => NULL,
-        'with' =>
+        'with' => 
         array (
           'stream' => 'php://stderr',
         ),
       ),
-      'syslog' =>
+      'syslog' => 
       array (
         'driver' => 'syslog',
         'level' => 'debug',
       ),
-      'errorlog' =>
+      'errorlog' => 
       array (
         'driver' => 'errorlog',
         'level' => 'debug',
       ),
-      'null' =>
+      'null' => 
       array (
         'driver' => 'monolog',
         'handler' => 'Monolog\\Handler\\NullHandler',
       ),
-      'emergency' =>
+      'emergency' => 
       array (
         'path' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/logs/laravel.log',
       ),
     ),
   ),
-  'mail' =>
+  'mail' => 
   array (
     'default' => 'smtp',
-    'mailers' =>
+    'mailers' => 
     array (
-      'smtp' =>
+      'smtp' => 
       array (
         'transport' => 'smtp',
         'host' => 'mailpit',
@@ -511,66 +511,66 @@
         'timeout' => NULL,
         'local_domain' => NULL,
       ),
-      'ses' =>
+      'ses' => 
       array (
         'transport' => 'ses',
       ),
-      'mailgun' =>
+      'mailgun' => 
       array (
         'transport' => 'mailgun',
       ),
-      'postmark' =>
+      'postmark' => 
       array (
         'transport' => 'postmark',
       ),
-      'sendmail' =>
+      'sendmail' => 
       array (
         'transport' => 'sendmail',
         'path' => '/usr/sbin/sendmail -bs -i',
       ),
-      'log' =>
+      'log' => 
       array (
         'transport' => 'log',
         'channel' => NULL,
       ),
-      'array' =>
+      'array' => 
       array (
         'transport' => 'array',
       ),
-      'failover' =>
+      'failover' => 
       array (
         'transport' => 'failover',
-        'mailers' =>
+        'mailers' => 
         array (
           0 => 'smtp',
           1 => 'log',
         ),
       ),
     ),
-    'from' =>
+    'from' => 
     array (
       'address' => 'hello@example.com',
-      'name' => 'Laravel',
+      'name' => '${APP_NAME}',
     ),
-    'markdown' =>
+    'markdown' => 
     array (
       'theme' => 'default',
-      'paths' =>
+      'paths' => 
       array (
         0 => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/resources/views/vendor/mail',
       ),
     ),
   ),
-  'queue' =>
+  'queue' => 
   array (
     'default' => 'sync',
-    'connections' =>
+    'connections' => 
     array (
-      'sync' =>
+      'sync' => 
       array (
         'driver' => 'sync',
       ),
-      'database' =>
+      'database' => 
       array (
         'driver' => 'database',
         'table' => 'jobs',
@@ -578,7 +578,7 @@
         'retry_after' => 90,
         'after_commit' => false,
       ),
-      'beanstalkd' =>
+      'beanstalkd' => 
       array (
         'driver' => 'beanstalkd',
         'host' => 'localhost',
@@ -587,7 +587,7 @@
         'block_for' => 0,
         'after_commit' => false,
       ),
-      'sqs' =>
+      'sqs' => 
       array (
         'driver' => 'sqs',
         'key' => '',
@@ -598,7 +598,7 @@
         'region' => 'us-east-1',
         'after_commit' => false,
       ),
-      'redis' =>
+      'redis' => 
       array (
         'driver' => 'redis',
         'connection' => 'default',
@@ -608,16 +608,16 @@
         'after_commit' => false,
       ),
     ),
-    'failed' =>
+    'failed' => 
     array (
       'driver' => 'database-uuids',
       'database' => 'mysql',
       'table' => 'failed_jobs',
     ),
   ),
-  'sanctum' =>
+  'sanctum' => 
   array (
-    'stateful' =>
+    'stateful' => 
     array (
       0 => 'localhost',
       1 => 'localhost:3000',
@@ -626,38 +626,38 @@
       4 => '::1',
       5 => 'localhost',
     ),
-    'guard' =>
+    'guard' => 
     array (
       0 => 'web',
     ),
     'expiration' => NULL,
-    'middleware' =>
+    'middleware' => 
     array (
       'verify_csrf_token' => 'App\\Http\\Middleware\\VerifyCsrfToken',
       'encrypt_cookies' => 'App\\Http\\Middleware\\EncryptCookies',
     ),
   ),
-  'services' =>
+  'services' => 
   array (
-    'mailgun' =>
+    'mailgun' => 
     array (
       'domain' => NULL,
       'secret' => NULL,
       'endpoint' => 'api.mailgun.net',
       'scheme' => 'https',
     ),
-    'postmark' =>
+    'postmark' => 
     array (
       'token' => NULL,
     ),
-    'ses' =>
+    'ses' => 
     array (
       'key' => '',
       'secret' => '',
       'region' => 'us-east-1',
     ),
   ),
-  'session' =>
+  'session' => 
   array (
     'driver' => 'file',
     'lifetime' => '120',
@@ -667,7 +667,7 @@
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
-    'lottery' =>
+    'lottery' => 
     array (
       0 => 2,
       1 => 100,
@@ -679,18 +679,18 @@
     'http_only' => true,
     'same_site' => 'lax',
   ),
-  'view' =>
+  'view' => 
   array (
-    'paths' =>
+    'paths' => 
     array (
       0 => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/resources/views',
     ),
     'compiled' => '/media/eh/7b86fa1c-7fc6-2e4d-a04d-cde21e47d6f9/sauv/Hotel_Artichaut/storage/framework/views',
   ),
-  'flare' =>
+  'flare' => 
   array (
     'key' => NULL,
-    'flare_middleware' =>
+    'flare_middleware' => 
     array (
       0 => 'Spatie\\FlareClient\\FlareMiddleware\\RemoveRequestIp',
       1 => 'Spatie\\FlareClient\\FlareMiddleware\\AddGitInformation',
@@ -698,30 +698,30 @@
       3 => 'Spatie\\LaravelIgnition\\FlareMiddleware\\AddEnvironmentInformation',
       4 => 'Spatie\\LaravelIgnition\\FlareMiddleware\\AddExceptionInformation',
       5 => 'Spatie\\LaravelIgnition\\FlareMiddleware\\AddDumps',
-      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddLogs' =>
+      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddLogs' => 
       array (
         'maximum_number_of_collected_logs' => 200,
       ),
-      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddQueries' =>
+      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddQueries' => 
       array (
         'maximum_number_of_collected_queries' => 200,
         'report_query_bindings' => true,
       ),
-      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddJobs' =>
+      'Spatie\\LaravelIgnition\\FlareMiddleware\\AddJobs' => 
       array (
         'max_chained_job_reporting_depth' => 5,
       ),
-      'Spatie\\FlareClient\\FlareMiddleware\\CensorRequestBodyFields' =>
+      'Spatie\\FlareClient\\FlareMiddleware\\CensorRequestBodyFields' => 
       array (
-        'censor_fields' =>
+        'censor_fields' => 
         array (
           0 => 'password',
           1 => 'password_confirmation',
         ),
       ),
-      'Spatie\\FlareClient\\FlareMiddleware\\CensorRequestHeaders' =>
+      'Spatie\\FlareClient\\FlareMiddleware\\CensorRequestHeaders' => 
       array (
-        'headers' =>
+        'headers' => 
         array (
           0 => 'API-KEY',
         ),
@@ -729,13 +729,13 @@
     ),
     'send_logs_as_events' => true,
   ),
-  'ignition' =>
+  'ignition' => 
   array (
     'editor' => 'phpstorm',
     'theme' => 'auto',
     'enable_share_button' => true,
     'register_commands' => false,
-    'solution_providers' =>
+    'solution_providers' => 
     array (
       0 => 'Spatie\\Ignition\\Solutions\\SolutionProviders\\BadMethodCallSolutionProvider',
       1 => 'Spatie\\Ignition\\Solutions\\SolutionProviders\\MergeConflictSolutionProvider',
@@ -756,7 +756,7 @@
       16 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\UndefinedViewVariableSolutionProvider',
       17 => 'Spatie\\LaravelIgnition\\Solutions\\SolutionProviders\\GenericLaravelExceptionSolutionProvider',
     ),
-    'ignored_solution_providers' =>
+    'ignored_solution_providers' => 
     array (
     ),
     'enable_runnable_solutions' => NULL,
@@ -764,7 +764,7 @@
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
-    'recorders' =>
+    'recorders' => 
     array (
       0 => 'Spatie\\LaravelIgnition\\Recorders\\DumpRecorder\\DumpRecorder',
       1 => 'Spatie\\LaravelIgnition\\Recorders\\JobRecorder\\JobRecorder',
@@ -772,15 +772,15 @@
       3 => 'Spatie\\LaravelIgnition\\Recorders\\QueryRecorder\\QueryRecorder',
     ),
   ),
-  'tinker' =>
+  'tinker' => 
   array (
-    'commands' =>
+    'commands' => 
     array (
     ),
-    'alias' =>
+    'alias' => 
     array (
     ),
-    'dont_alias' =>
+    'dont_alias' => 
     array (
       0 => 'App\\Nova',
     ),

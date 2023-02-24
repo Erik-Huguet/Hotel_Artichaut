@@ -39,6 +39,7 @@ class UpdateUserRequest extends FormRequest
             'avatar_user' => ['nullable', 'max:255'],
             'email_verified_at' => ['nullable'],
             'password' => ['nullable'],
+            'fk_Users_Roles' => ['nullable']
         ];
     }
 }
