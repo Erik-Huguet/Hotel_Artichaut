@@ -2,33 +2,33 @@
 
 namespace Tests\Feature;
 
+use App\Models\Chamber;
+use App\Models\Comment;
 use App\Models\Discount;
+use App\Models\News;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class DiscountTest extends TestCase
 {
+
     use RefreshDatabase;
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_post_discount()
+
+    public function test_post_discounts()
     {
         $response = $this->post('/api/v1/discounts', [
-            'title_fr_discount' => 'Titre français',
-            'title_ang_discount' => 'Title English',
-            'describe_fr_discount' => 'Description française',
-            'describe_ang_discount' => 'English description',
-            'code_discount' => '1457',
-            'fk_Users_Discounts' => 1
-        ]);
+            'title_fr_discount' => 'Genial ',
+            'describe_fr_discount' => "Agreable et serviable",
+            'title_ang_discount' => "Great",
+            'describe_ang_discount' => "sympatic and serviable",
+            'code_discount' => 25,
+            'fk_Users_Discounts' => 1,
 
+        ]);
         $response->assertCreated();
         $this->assertCount(1, Discount::all());
-
     }
 
     public function test_put_discount()
@@ -51,7 +51,7 @@ class ExampleTest extends TestCase
 
     }
 
-    /*public function test_delete_discount()
+    public function test_delete_discount()
     {
         $this->post('/api/v1/discounts', [
             'title_fr_discount' => 'Titre français',
@@ -68,5 +68,5 @@ class ExampleTest extends TestCase
 
         $this->assertCount(7, Discount::all());
 
-    }*/
+    }
 }
