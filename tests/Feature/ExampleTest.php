@@ -20,7 +20,7 @@ class ExampleTest extends TestCase
         $response = $this->post('/api/v1/discounts', [
             'title_fr_discount' => 'Titre français',
             'title_ang_discount' => 'Title English',
-            'describe_fr_discount' => 'Description dsqfdfdsdgfdgfsdgf',
+            'describe_fr_discount' => 'Description française',
             'describe_ang_discount' => 'English description',
             'code_discount' => '1457',
             'fk_Users_Discounts' => 1
@@ -39,11 +39,12 @@ class ExampleTest extends TestCase
         $this->put('/api/v1/discounts/' . $discount->id, [
             'title_fr_discount' => 'Titre en français',
             'title_ang_discount' => 'English Title',
-            'describe_fr_discount' => 'Description française',
+            'describe_fr_discount' => 'Description dfkljskljdfskljdfskljdfs',
             'describe_ang_discount' => 'English description',
             'code_discount' => '1457',
             'fk_Users_Discounts' => 1
         ]);
+        $discount = Discount::first(); // Ca ou refresh pour récupérer les données modifiées. Sinon, le test échoue.
 
         $this->assertEquals('Titre en français', $discount->title_fr_discount);
         $this->assertEquals('English Title', $discount->title_ang_discount);
