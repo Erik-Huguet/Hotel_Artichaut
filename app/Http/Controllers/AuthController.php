@@ -45,16 +45,16 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(request $request)
+    public function login(Request $request)
     {
-
+    //dd($request->all());
         $credentials = $request->validate([
             'email' => 'required ',
             'password' => 'required',
         ]);
 
        $user = User::where('email', $request->email)->first() ;
-
+       // dd($user);
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 //Response::HTTP_NOT_FOUND,
@@ -66,7 +66,7 @@ class AuthController extends Controller
             return response()->json([
                 //Response::HTTP_NOT_FOUND,
                 'message' => 'Bab password.'
-                //redirect()->to('login')
+
             ]);
         }
 
@@ -79,8 +79,9 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             "message" => 'ok logger',
             "remember_token" => $remember_me,
-        ]);
 
+        ]);
+        //redirect()->to('login')
     }
 
     public function me(Request $request)
@@ -95,9 +96,8 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $tokenId = Str::before(request()->bearerToken(), '|');
-        //dd($tokenId);
-        auth()->user()->tokens()->where($request->id, $tokenId )->delete();
+        //$request->user()->currentAccessToken()->delete();
+        auth()->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
 
