@@ -66,7 +66,6 @@ class AuthController extends Controller
             return response()->json([
                 //Response::HTTP_NOT_FOUND,
                 'message' => 'Bab password.'
-
             ]);
         }
 
@@ -89,14 +88,13 @@ class AuthController extends Controller
         return $request->user();
     }
 
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout(Request $request)
     {
-        //$request->user()->currentAccessToken()->delete();
+
         auth()->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
