@@ -25,25 +25,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('/register', [AuthController::class, 'register']);
-//Cette méthode à pour objecctif de générer et de renvoyer le token lorsque le mdp et le mail match
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
-
-Route::group(["middleware"  => ["auth:sanctum", "web"]], function () {
-    //Route::get('/me', [AuthController::class ,'me']);
-    Route::apiResource("/advantages", AdvantageController::class);
-});
-
-Route::delete('/users',[UserController::class, "destroy"]);
-
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//
-//    return $request->user();
-//});
-
-
 Route::group(['prefix' => 'v1'], function() {
     // Route::apiResource('advantages', AdvantageController::class);
     Route::apiResource('chambers', ChamberController::class);
@@ -58,4 +39,25 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('logout', AuthController::class);
 
 });
+
+
+Route::post('/register', [AuthController::class, 'register']);
+//Cette méthode à pour objecctif de générer et de renvoyer le token lorsque le mdp et le mail match
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
+
+//Route::group(["middleware"  => ["auth:sanctum", "web"]], function () {
+//    //Route::get('/me', [AuthController::class ,'me']);
+//    Route::apiResource("/advantages", AdvantageController::class);
+//});
+
+Route::delete('/users',[UserController::class, "destroy"]);
+
+Route::middleware('auth:sanctum')->group( function() {
+
+    Route::apiResource("/advantages", AdvantageController::class);
+});
+
+
+
 

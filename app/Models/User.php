@@ -18,7 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 
 {
-    use SoftDeletes,HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -63,14 +63,7 @@ class User extends Authenticatable
        // var_dump($this->fk_Users_Roles === Role::class->roles->type_role);
        // return $this->fk_Users_Roles === Role::class->type_role("admin");
     }
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-        return $this->respondWithToken($token);
-    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo

@@ -15,6 +15,6 @@ class UserTest extends TestCase
 {
 
 
-   use RefreshDatabase;
+   //use RefreshDatabase;
 
 }

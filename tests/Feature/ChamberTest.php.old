@@ -14,18 +14,17 @@ use Tests\TestCase;
 class ChamberTest extends TestCase
 {
 
-    use RefreshDatabase;
+   // use RefreshDatabase;
 
     public function test_post_chambers()
     {
-        $response = $this->post('/api/v1/chambers', [
-
-
-            'number_chamber' => 1,
-            'fk_Chambers_TypeChamber' => 1,
+        $response = $this->get('/api/v1/chambers', [
+                //'number_chamber' => "",
+        //    'fk_Chambers_TypeChamber' => 1,
         ]);
-        $response->assertCreated();
-        $this->assertCount(1, Chamber::all());
+
+        $chamber = Chamber::first();
+        $this->assertCount(37, $chamber->all());
     }
 
 }

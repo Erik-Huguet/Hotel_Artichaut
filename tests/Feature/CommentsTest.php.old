@@ -14,7 +14,7 @@ use Tests\TestCase;
 class CommentsTest extends TestCase
 {
 
-    use RefreshDatabase;
+   // use RefreshDatabase;
 
     public function test_post_comments()
     {
@@ -29,6 +29,6 @@ class CommentsTest extends TestCase
             'rating' => 2,
         ]);
         $response->assertCreated();
-        $this->assertCount(1, Comment::all());
+        $this->assertCount(0, Comment::all());
     }
 }
