@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
 {
@@ -48,11 +49,11 @@ class AuthController extends Controller
     {
 
         $credentials = $request->validate([
-            'email' => 'required ',
+            'email' => 'required | email',
             'password' => 'required',
         ]);
 
-       $user = User::where('email', $request->email)->first() ;
+        $user = User::where('email', $request->email)->first();
 
         if (!Auth::attempt($credentials)) {
             return response()->json([
@@ -60,6 +61,11 @@ class AuthController extends Controller
                 'message' => 'Bad email, not match our records.'
             ]);
         }
+//       if (Empty($user->email)){
+//           return response()->json([
+//               'message'=> 'Bad email'
+//           ]);
+//       }
 
         if (!Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -68,18 +74,26 @@ class AuthController extends Controller
             ]);
         }
 
-        $token = $user->createToken("API TOKEN")->plainTextToken;
+        //if ($user->tokens()->get()->contains('token' !== null) === false) {
 
-        $remember_me =  $request->has('remember_me');
+        $token = $user->createToken("API TOKEN")->plainTextToken;
+        $remember_me = $request->has('remember_me');
 
         return response()->json([
             "acces_token" => $token,
             'token_type' => 'Bearer',
             "message" => 'ok logger',
             "remember_token" => $remember_me,
-
         ]);
-        //redirect()->to('login')
+//        }else{
+//            $token = $user->tokens()->first();
+//
+//            return response()->json([
+//                "acces_token" => $token,
+//                "message " => "Utilisateur deja authentifié"
+//            ]);
+//        //return redirect()->to('login')
+//        }
     }
 
     public function me(Request $request)
@@ -93,8 +107,10 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+
+        auth('sanctum')->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
 
 }
+
