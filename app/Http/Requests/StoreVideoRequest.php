@@ -25,8 +25,8 @@ class StoreVideoRequest extends FormRequest
     {
         return [
             'title_fr_video' => ['required', 'max:255'],
-            'describe_fr_video' => ['required', 'max:255'],
             'title_ang_video' => ['required', 'max:255'],
+            'describe_fr_video' => ['required', 'max:255'],
             'describe_ang_video' => ['required', 'max:255'],
             'url_video' => ['required', 'url'],
             'fk_Users_Videos' => ['required'],

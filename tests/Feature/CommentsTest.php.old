@@ -1,0 +1,34 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\Chamber;
+use App\Models\Comment;
+use App\Models\Discount;
+use App\Models\News;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class CommentsTest extends TestCase
+{
+
+   // use RefreshDatabase;
+
+    public function test_post_comments()
+    {
+        $response = $this->post('/api/v1/comments', [
+
+            'title_fr_comment' => 'Genial ',
+            'describe_fr_comment' => "Agreable et serviable",
+            'title_ang_comment' => "Great",
+            'describe_ang_comment' => "sympatic and serviable",
+            'fk_Users_Comments' => 1,
+            'fk_Chambers_Comments' => 1,
+            'rating' => 2,
+        ]);
+        $response->assertCreated();
+        $this->assertCount(0, Comment::all());
+    }
+}

@@ -20,11 +20,11 @@ class NewsFactory extends Factory
 
         return [
             'title_fr_new'=> fake()->name(),
-            'title_ang_new'=> fake()->name(),
             'describe_fr_new' => fake()->paragraph,
+            'title_ang_new'=> fake()->name(),
             'describe_ang_new' => fake()->paragraph,
-            'position_icon_new' =>fake()->randomDigit(),
             'icon_new' =>fake()->imageUrl($width = 640, $height = 480),
+            'position_icon_new' =>fake()->randomDigit(),
             'fk_Users_News' =>fake()->randomElement($arrayValues),
         ];
     }
