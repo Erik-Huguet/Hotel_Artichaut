@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+
 use function PHPUnit\Framework\isEmpty;
 
 class AuthController extends Controller
@@ -38,6 +41,7 @@ class AuthController extends Controller
             'pseudo' => $request->pseudo,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'fk_Users_Roles' => 3
         ]);
         return response()->json([Response::HTTP_OK]);
     }
@@ -107,7 +111,8 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         auth('sanctum')->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
