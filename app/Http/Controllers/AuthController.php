@@ -46,14 +46,14 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-    //dd($request->all());
+
         $credentials = $request->validate([
             'email' => 'required ',
             'password' => 'required',
         ]);
 
        $user = User::where('email', $request->email)->first() ;
-       // dd($user);
+
         if (!Auth::attempt($credentials)) {
             return response()->json([
                 //Response::HTTP_NOT_FOUND,
