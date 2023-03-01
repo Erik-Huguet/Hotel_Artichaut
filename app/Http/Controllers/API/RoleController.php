@@ -31,8 +31,7 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $validateData = $request->validated();
-        $newRole = new Role();
-        $newRole->setRawAttributes($validateData);
+        $newRole = new Role($validateData);
         $newRole->save();
         return response()->json($newRole, Response::HTTP_CREATED);
     }

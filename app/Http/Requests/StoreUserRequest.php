@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Models\User;
 
 class StoreUserRequest extends FormRequest
 {
@@ -15,6 +15,7 @@ class StoreUserRequest extends FormRequest
     public function authorize()
     {
 
+        //var_dump('hello');
         return true;
     }
 
@@ -26,16 +27,15 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'lastname'=> ['required', 'max:255'],
-            'firstname' => ['required', 'max:255'],
-            'pseudo' => ['required','max:255'],
-            'email' => ['required', 'max:255'],
-            'phone' => ['required', 'max:20'],
-            'avatar_user' => ['required', 'max:255'],
+            'lastname'=> ['nullable','max:255'],
+            'firstname' => ['nullable','max:255'],
+            'pseudo' => 'required | pseudo | unique:users,pseudo',
+            'email' => 'required | email | unique:users,email',
+            'phone' => ['nullable', 'max:20'],
+            'avatar_user' => ['nullable', 'max:255'],
             'email_verified_at' => ['nullable'],
-            'password' => ['require', 'max:255'],
-            'remember_token'=> ['nullable'],
-            'fk_Users_Roles' => ['required'],
+            'password' => ['required'],
+
         ];
     }
 }

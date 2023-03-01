@@ -35,7 +35,7 @@ class Chamber extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pictures()
+    public function picture()
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_Chambers');
     }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -13,6 +15,11 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize():bool
     {
+        //var_dump('hello');
+       // if (!Gate::allows('update-user'))
+       // {
+        //   return false;
+        //}
         return true;
     }
 
@@ -24,16 +31,13 @@ class UpdateUserRequest extends FormRequest
     public function rules():array
     {
         return [
-            'lastname'=> ['required', 'max:255'],
-            'firstname' => ['required', 'max:255'],
-            'pseudo' => ['required','max:255'],
-            'email' => ['required', 'max:255'],
-            'phone' => ['required', 'max:20'],
-            'avatar_user' => ['required','max:255'],
-            'email_verified_at' => ['nullable'],
-            'password' => ['require', 'max:255'],
-            'remember_token'=> ['nullable'],
-            'fk_Users_Roles' => ['required'],
+            'lastname'=> ['nullable','max:255'],
+            'firstname' => ['nullable','max:255'],
+            'pseudo' => ['nullable', 'unique'],
+            'email' => ['nullable','unique'],
+            'phone' => ['nullable', 'max:20'],
+            'avatar_user' => ['nullable', 'max:255'],
+            'password' => ['nullable'],
         ];
     }
 }

@@ -12,9 +12,9 @@ class Advantage extends Model
     protected $fillable = [
 
             'title_fr_adv' ,
-            'discribe_fr_adv' ,
+            'describe_fr_adv' ,
             'title_ang_adv' ,
-            'discribe_ang_adv' ,
+            'describe_ang_adv' ,
             'icon_adv',
             'position_icon',
             'fk_Users_Avantages',
@@ -31,7 +31,7 @@ class Advantage extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function pictures()
+    public function picture()
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_Advantages');
     }

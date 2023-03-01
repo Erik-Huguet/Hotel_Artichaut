@@ -11,9 +11,12 @@ class Comment extends Model
 
     protected $fillable = [
         'title_fr_comment',
-        'discribe_fr_comment',
+        'describe_fr_comment',
         'title_ang_comment',
-        'discribe_ang_comment',
+        'describe_ang_comment',
+        'rating',
+        'fk_Users_Comments',
+        'fk_Chambers_Comments',
     ];
 
     /**
@@ -27,7 +30,7 @@ class Comment extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function chambers()
+    public function chamber()
     {
         return $this->belongsTo(Chamber::class, 'fk_Chambers_Comments');
     }
