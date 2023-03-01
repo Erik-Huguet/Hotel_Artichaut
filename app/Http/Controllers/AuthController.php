@@ -111,8 +111,7 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+
         auth('sanctum')->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }
