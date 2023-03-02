@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,13 +43,12 @@ class UserController extends Controller
      *
      * @param  \App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\JsonResponse
+     *
      */
     public function store(StoreUserRequest $request)
     {
-        $validateData = $request->validated();
-        $newUser = new User($validateData);
-        $newUser->save();
-        return response()->json($newUser, Response::HTTP_CREATED);
+        User::created($request->validated());
+        return response()->json(User::class->user(), Response::HTTP_CREATED);
     }
 
     /**
@@ -72,8 +72,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $validateData = $request->validated();
-        $user->update($validateData);
+
+        $user->update($request->validated());
         return response()->json($user, Response::HTTP_ACCEPTED);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
 
@@ -35,6 +36,7 @@ class StoreUserRequest extends FormRequest
             'avatar_user' => ['nullable', 'max:255'],
             'email_verified_at' => ['nullable'],
             'password' => ['required'],
+
 
         ];
     }
