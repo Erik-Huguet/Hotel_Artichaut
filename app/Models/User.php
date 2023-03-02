@@ -34,6 +34,7 @@ class User extends Authenticatable
         'avatar_user',
         'password',
         'fk_Users_Roles'
+
     ];
 
     /**
@@ -44,6 +45,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+
     ];
 
     /**
@@ -59,9 +61,7 @@ class User extends Authenticatable
    public function me(User $user, Request $request)
    {
        return $user->id === $request->user();
-       // var_dump($this->fk_Users_Roles === Role::class->roles->type_role);
-       // return $this->fk_Users_Roles === Role::class->type_role("admin");
-    }
+   }
 
 
     /**
