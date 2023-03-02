@@ -12,7 +12,7 @@ class Chamber extends Model
     protected $fillable = [
 
         'number_chamber',
-        'fk_Chambers_TypeChamber',
+
     ];
 
 
@@ -38,5 +38,9 @@ class Chamber extends Model
     public function picture()
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_Chambers');
+    }
+   public function reservation()
+    {
+        return $this->belongsToMany(Reservation::class, 'fk_Reservation');
     }
 }

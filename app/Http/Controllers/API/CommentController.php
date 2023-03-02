@@ -16,6 +16,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+    /* Affichage (recupere tout les instances du model */
     public function index()
     {
         $comment = Comment::all();
@@ -28,8 +29,10 @@ class CommentController extends Controller
      * @param  \App\Http\Requests\StoreCommentRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
+    /*Creation de nouveau commentaire*/
     public function store(StoreCommentRequest $request)
     {
+       // Comment::created($request->validate());
         $validateData = $request->validated();
         $newComment = new Comment();
         $newComment->setRawAttributes($validateData);
@@ -55,6 +58,8 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\JsonResponse
      */
+
+    /*Modifications dees données*/
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
         $validateData = $request->validated();

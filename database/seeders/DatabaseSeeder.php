@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             VideoSeeder::class,
             TypeChamberSeeder::class,
+            ReservationSeeder::class,
+            InvoicesSeeder::class,
 
         ]);
 
