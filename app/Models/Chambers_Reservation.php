@@ -13,11 +13,11 @@ class Chambers_Reservation extends Model
         'fk_Reservations',
         'fk_Chambers',
     ];
-    public function Chambers() {
-        return $this->belongsToMany('App/models/Chambers');
+    public function chamber() {
+        return $this->belongsToMany('app/Models/Chambers');
     }
 
-    public function Reservation() {
-        return $this->belongsToMany('App/models/Reservation');
+    public function reservation() {
+        return $this->belongsToMany('app/Models/Reservation');
     }
 }

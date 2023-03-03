@@ -31,4 +31,8 @@ class Discount extends Model
     {
         return $this->belongsTo(Picture::class, 'fk_Pictures_Discounts');
     }
+
+    public function reservation(){
+        return $this->belongsTo(Reservation::class, 'fk_Reservation_Discount');
+    }
 }

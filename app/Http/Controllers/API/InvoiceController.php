@@ -58,9 +58,10 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateInvoiceRequest $request, $id)
+    public function update(UpdateInvoiceRequest $request, Invoice $invoice)
     {
-        $invoice = Invoice::findOrFail($id);
+        //Travail Camille
+        /*$invoice = Invoice::findOrFail($id);
 
         $price = $request->has('price') ? $request->get('price') :  $invoice->price;
         $number_invoices = $request->has('number_invoices') ? $request->get('number_invoices') :  $invoice->number_invoices;
@@ -73,7 +74,13 @@ class InvoiceController extends Controller
         $invoice->price = $price;
         $invoice->number_invoices = $number_invoices;
         $invoice->save();
-        return response()->json($invoice, 200);
+        return response()->json($invoice, 200);*/
+
+
+        //Travail Mathieu
+        $validateData = $request->validated();
+        $invoice->update($validateData);
+        return response()->json($invoice, Response::HTTP_ACCEPTED);
     }
 
     /**

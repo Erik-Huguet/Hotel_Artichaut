@@ -113,4 +113,12 @@ class User extends Authenticatable
         return $this->hasMany(discount::class, 'fk_Users_Discounts');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reservation(){
+        return $this->belongsToMany('app/Models/Reservation');
+    }
+
 }

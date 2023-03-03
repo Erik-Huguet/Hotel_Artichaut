@@ -19,10 +19,11 @@ return new class extends Migration
             $table->date('dateEnd');
             $table->integer('nb_Person');
             $table->integer('totalServices')->nullable();
+            $table->foreignId('fk_Reservation_Discount');
+            $table->foreignId('fk_Reservation_User');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

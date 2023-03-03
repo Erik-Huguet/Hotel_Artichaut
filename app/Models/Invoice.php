@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-//comit
+//commit
 class Invoice extends Model
 {
     use HasFactory;
@@ -15,11 +15,18 @@ class Invoice extends Model
         'fk_Reservation',
     ];
 
-    public function Reservation() {
-        return $this->belongsToMany('App/models/Reservation');
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reservation() {
+        return $this->belongsToMany('app/Models/Reservation');
     }
 
-    public function User(){
-        return $this->belongsToMany('App/models/User');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function user(){
+        return $this->belongsToMany('app/Models/User');
     }
 }

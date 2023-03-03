@@ -17,15 +17,31 @@ class Reservation extends Model
         'fk_Chambers',
         ];
 
-    public function Service() {
-        return $this->belongsToMany('App/models/Services');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function service() {
+        return $this->belongsToMany('app/Models/Services');
     }
 
-    public function Chamber(){
-        return $this->belongsToMany('App/models/Chamber');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function chamber(){
+        return $this->belongsToMany('app/Models/Chamber');
     }
 
-    public function Discount(){
-        return $this->hasMany('App/models/Discount');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function discount(){
+        return $this->hasMany(Discount::class, 'fk_Reservation_Discount');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function user(){
+        return $this->belongsToMany('app/Models/User');
     }
 }
