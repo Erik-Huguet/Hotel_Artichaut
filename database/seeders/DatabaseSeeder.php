@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             TypeChamberSeeder::class,
             ReservationSeeder::class,
             InvoiceSeeder::class,
+            AdressUserSeeder::class,
+            ServicesSeeder::class,
 
         ]);
 

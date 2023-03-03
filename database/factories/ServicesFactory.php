@@ -17,7 +17,10 @@ class ServicesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'price' => fake()->randomNumber(3),
+            'numberPerson' => fake()->randomDigit(),
+            'numberWeek' => fake()->randomDigit(),
         ];
     }
 }

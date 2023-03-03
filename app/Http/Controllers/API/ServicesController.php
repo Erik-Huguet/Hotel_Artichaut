@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreServicesRequest;
 use App\Http\Requests\UpdateServicesRequest;
 use App\Models\Services;
-use http\Env\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ServicesController extends Controller
@@ -29,8 +29,10 @@ class ServicesController extends Controller
      */
     public function store(StoreServicesRequest $request)
     {
-        Services::created($request->validated());
-        return response()->json([Response::HTTP_CREATED]);
+        $validateData = $request->validated();
+        $newService = new Services($validateData);
+        $newService->save();
+        return response()->json($newService, Response::HTTP_CREATED);
     }
 
     /**

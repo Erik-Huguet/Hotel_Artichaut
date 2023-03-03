@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdressUserController;
 use App\Http\Controllers\API\AdvantageController;
 use App\Http\Controllers\API\ChamberController;
 use App\Http\Controllers\API\CommentController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PictureController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
@@ -40,6 +42,8 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('logout', AuthController::class);
     Route::apiResource('reservation', ReservationController::class);
     Route::apiResource('invoice', InvoiceController::class);
+    Route::apiResource('address', AdressUserController::class);
+    Route::apiResource('services', ServicesController::class);
 
 });
 

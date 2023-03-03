@@ -114,11 +114,18 @@ class User extends Authenticatable
     }
 
 
+    //////A vérifier
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function reservation(){
         return $this->belongsToMany('app/Models/Reservation');
+    }
+
+
+    public function address()
+    {
+        return $this->belongsToMany('app/Models/AddressUser');
     }
 
 }

@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('adress_users', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateStart');
-            $table->date('dateEnd');
-            $table->integer('nb_Person');
-            $table->integer('totalServices')->nullable();
-            $table->foreignId('fk_Reservations_Discounts')->nullable();
-            $table->foreignId('fk_Reservation_User')->nullable();
+            $table->string('address');
+            $table->integer('postalCode');
+            $table->string('city');
+            $table->string('country');
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('adress_users');
     }
 };

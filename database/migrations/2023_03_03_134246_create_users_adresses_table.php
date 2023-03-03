@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('users_adresses', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateStart');
-            $table->date('dateEnd');
-            $table->integer('nb_Person');
-            $table->integer('totalServices')->nullable();
-            $table->foreignId('fk_Reservations_Discounts')->nullable();
-            $table->foreignId('fk_Reservation_User')->nullable();
+            $table->foreignId('fk_User');
+            $table->foreignId('fk_addressUser');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('users_adresses');
     }
 };
