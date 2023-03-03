@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Invoices;
+use App\Models\Invoice;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InvoicesPolicy
+class InvoicePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class InvoicesPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoices  $invoices
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Invoices $invoices)
+    public function view(User $user, Invoice $invoice)
     {
         //
     }
@@ -48,10 +48,10 @@ class InvoicesPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoices  $invoices
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Invoices $invoices)
+    public function update(User $user, Invoice $invoice)
     {
         //
     }
@@ -60,10 +60,10 @@ class InvoicesPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoices  $invoices
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Invoices $invoices)
+    public function delete(User $user, Invoice $invoice)
     {
         //
     }
@@ -72,10 +72,10 @@ class InvoicesPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoices  $invoices
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Invoices $invoices)
+    public function restore(User $user, Invoice $invoice)
     {
         //
     }
@@ -84,10 +84,10 @@ class InvoicesPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Invoices  $invoices
+     * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Invoices $invoices)
+    public function forceDelete(User $user, Invoice $invoice)
     {
         //
     }

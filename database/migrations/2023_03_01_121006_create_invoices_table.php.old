@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('price');
-            $table->integer('number_invoices')->autoincrement();
+            $table->integer('number_invoices');
             $table->timestamps();
+            $table->foreignId('fk_Reservation')->nullable();
+            $table->foreignId('fk_User')->nullable();
         });
     }
 

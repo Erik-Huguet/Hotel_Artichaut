@@ -16,6 +16,7 @@ class Reservation extends Model
         'fk_Reservations_Discounts ',
         'fk_Chambers',
         ];
+
     public function Service() {
         return $this->belongsToMany('App/models/Services');
     }

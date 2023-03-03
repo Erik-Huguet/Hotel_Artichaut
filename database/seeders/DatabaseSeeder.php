@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             VideoSeeder::class,
             TypeChamberSeeder::class,
             ReservationSeeder::class,
-            InvoicesSeeder::class,
+            InvoiceSeeder::class,
 
         ]);
 

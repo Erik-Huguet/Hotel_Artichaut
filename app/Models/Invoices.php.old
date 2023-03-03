@@ -17,9 +17,9 @@ class Invoices extends Model
 
     public function Reservation() {
         return $this->belongsToMany('App/models/Reservation');
-        }
+    }
 
     public function User(){
         return $this->belongsToMany('App/models/User');
-        }
+    }
 }

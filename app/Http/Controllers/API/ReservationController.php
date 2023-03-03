@@ -25,13 +25,17 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     *
      * @param  \App\Http\Requests\StoreReservationRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreReservationRequest $request)
     {
-       Reservation::created($request->validated());
-       return response()->json([Response::HTTP_CREATED]);
+
+        $validateData = $request->validated();
+        $newResa= new Reservation($validateData);
+        $newResa->save();
+        return response()->json($newResa, Response::HTTP_CREATED);
     }
 
 

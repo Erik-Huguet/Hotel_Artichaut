@@ -13,7 +13,7 @@ class StoreReservationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,6 @@ class StoreReservationRequest extends FormRequest
             'dateStart' => ['required'],
             'dateEnd' => [ 'required'],
             'nb_Person'  => ['required', 'min:1'],
-            'price_reservation' => ['required', 'min:1'],
             'totalServices '=> ['nullable'],
         ];
     }

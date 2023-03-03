@@ -4,14 +4,15 @@ use App\Http\Controllers\API\AdvantageController;
 use App\Http\Controllers\API\ChamberController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
+use App\Http\Controllers\API\InvoiceController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PictureController;
+use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,6 +38,8 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
+    Route::apiResource('reservation', ReservationController::class);
+    Route::apiResource('invoice', InvoiceController::class);
 
 });
 

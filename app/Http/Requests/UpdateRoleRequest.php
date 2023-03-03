@@ -24,7 +24,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules():array
     {
         return [
-            'type_role' => ['required'],
+            'type_role' => ['nullable'],
         ];
     }
 }

@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateStart');
-            $table->date('dateEnd');
-            $table->integer('nb_Person');
-            $table->integer('totalServices')->nullable();
+            $table->integer('price');
+            $table->integer('number_invoices');
             $table->timestamps();
+            $table->foreignId('fk_Reservation')->nullable();
+            $table->foreignId('fk_User')->nullable();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('invoices');
     }
 };
