@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\API\AdressUserController;
+use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\AdvantageController;
 use App\Http\Controllers\API\ChamberController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
+use App\Http\Controllers\API\FooterController;
 use App\Http\Controllers\API\InvoiceController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\PictureController;
@@ -42,8 +43,9 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('logout', AuthController::class);
     Route::apiResource('reservation', ReservationController::class);
     Route::apiResource('invoice', InvoiceController::class);
-    Route::apiResource('address', AdressUserController::class);
+    Route::apiResource('address', AddressController::class);
     Route::apiResource('services', ServicesController::class);
+    Route::apiResource('footer', FooterController::class);
 
 });
 

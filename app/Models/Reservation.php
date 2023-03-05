@@ -21,14 +21,14 @@ class Reservation extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function service() {
-        return $this->belongsToMany('app/Models/Services');
+        return $this->belongsToMany(Services::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function chamber(){
-        return $this->belongsToMany('app/Models/Chamber');
+        return $this->belongsToMany(Chamber::class);
     }
 
     /**
@@ -42,6 +42,6 @@ class Reservation extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function user(){
-        return $this->belongsToMany('app/Models/User');
+        return $this->belongsToMany(User::class);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\AdressUser;
+use App\Models\Footer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AdressUserPolicy
+class FooterPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AdressUserPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AdressUser  $adressUser
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, AdressUser $adressUser)
+    public function view(User $user, Footer $footer)
     {
         //
     }
@@ -48,10 +48,10 @@ class AdressUserPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AdressUser  $adressUser
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, AdressUser $adressUser)
+    public function update(User $user, Footer $footer)
     {
         //
     }
@@ -60,10 +60,10 @@ class AdressUserPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AdressUser  $adressUser
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, AdressUser $adressUser)
+    public function delete(User $user, Footer $footer)
     {
         //
     }
@@ -72,10 +72,10 @@ class AdressUserPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AdressUser  $adressUser
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, AdressUser $adressUser)
+    public function restore(User $user, Footer $footer)
     {
         //
     }
@@ -84,10 +84,10 @@ class AdressUserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\AdressUser  $adressUser
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, AdressUser $adressUser)
+    public function forceDelete(User $user, Footer $footer)
     {
         //
     }

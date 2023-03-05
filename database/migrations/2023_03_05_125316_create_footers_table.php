@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adress_users', function (Blueprint $table) {
+        Schema::create('footers', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->integer('postalCode');
-            $table->string('city');
-            $table->string('country');
+            $table->string('addressHotel');
+            $table->string('NomHotel');
+            $table->string('logoHotel');
+            $table->string('emailHotel');
+            $table->string('telephoneHotel');
+            $table->string('urlFooter');
+            $table->foreignId('fk_Footer_Users');
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adress_users');
+        Schema::dropIfExists('footers');
     }
 };

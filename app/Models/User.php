@@ -125,7 +125,11 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->belongsToMany('app/Models/AddressUser');
+        return $this->belongsToMany(Address::class);
     }
 
+    public function footer()
+    {
+        return $this->hasMany(Footer::class);
+    }
 }

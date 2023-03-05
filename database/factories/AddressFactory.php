@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AdressUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Address>
  */
-class AdressUserFactory extends Factory
+class AddressFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,8 @@ class AdressUserFactory extends Factory
         return [
             'address' =>fake()->address(),
             'postalCode' =>fake()->randomNumber(5),
-            'city' => fake()->city(),
-            'country' =>fake()->country(),
+            'city' =>fake()->city(),
+            'country'=>fake()->country(),
         ];
     }
 }

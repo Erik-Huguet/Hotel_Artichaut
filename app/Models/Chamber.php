@@ -41,6 +41,6 @@ class Chamber extends Model
     }
    public function reservation()
     {
-        return $this->belongsToMany(Reservation::class, 'fk_Reservation');
+        return $this->belongsToMany(Reservation::class);
     }
 }

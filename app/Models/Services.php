@@ -15,6 +15,6 @@ class Services extends Model
         'numberWeek',
     ];
     public function reservation() {
-        return $this->belongsToMany('app/Models/Reservation');
+        return $this->belongsToMany(Reservation::class);
     }
 }
