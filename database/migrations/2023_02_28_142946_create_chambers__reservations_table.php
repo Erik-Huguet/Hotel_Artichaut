@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('chambers__reservations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('fk_Reservations');
+            $table->foreignId('fk_Chambers');
             $table->timestamps();
         });
     }

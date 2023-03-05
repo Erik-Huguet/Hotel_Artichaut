@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users_adresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('fk_User');
-            $table->foreignId('fk_addressUser');
+            $table->foreignId('fk_Address');
             $table->timestamps();
         });
     }

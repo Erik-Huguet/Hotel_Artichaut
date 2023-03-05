@@ -13,7 +13,7 @@ class StoreChambers_ReservationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoreChambers_ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fk_Reservations'=> ['required'],
+            'fk_Chambers'=> ['required'],
         ];
     }
 }

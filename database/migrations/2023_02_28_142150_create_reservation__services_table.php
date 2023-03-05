@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('reservation__services', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('fk_Reservations');
+            $table->foreignId('fk_Services');
+            $table->integer('numberDays');
             $table->timestamps();
         });
     }

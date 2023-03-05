@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservation_ServicesRequest;
 use App\Http\Requests\UpdateReservation_ServicesRequest;
 use App\Models\Reservation_Services;

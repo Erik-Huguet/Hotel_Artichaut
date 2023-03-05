@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUsersAdressRequest;
 use App\Http\Requests\UpdateUsersAdressRequest;
 use App\Models\UsersAdress;
@@ -29,8 +30,10 @@ class UsersAdressController extends Controller
      */
     public function store(StoreUsersAdressRequest $request)
     {
-        UsersAdress::created($request->validated());
-        return response()->json([Response::HTTP_CREATED]);
+        $validateData = $request->validated();
+        $newAddressUser = new UsersAdress($validateData);
+        $newAddressUser->save();
+        return response()->json($newAddressUser, Response::HTTP_CREATED);
     }
 
     /**

@@ -11,7 +11,7 @@ class Reservation_Services extends Model
 
     protected $fillable =[
         'numberDays',
-        'fk_Reservation',
+        'fk_Reservations',
         'Fk_Services',
     ];
 

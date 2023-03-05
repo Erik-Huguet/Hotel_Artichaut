@@ -13,7 +13,7 @@ class UpdateChambers_ReservationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateChambers_ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fk_Reservations'=> ['nullable'],
+            'fk_Chambers'=> ['nullable'],
         ];
     }
 }

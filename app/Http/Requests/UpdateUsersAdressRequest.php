@@ -13,7 +13,7 @@ class UpdateUsersAdressRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateUsersAdressRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fk_User' => ['nullable'],
+            'fk_Address' => ['nullable'],
         ];
     }
 }

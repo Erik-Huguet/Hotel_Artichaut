@@ -13,7 +13,7 @@ class StoreUsersAdressRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoreUsersAdressRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fk_User' => ['required'],
+            'fk_Address' => ['required'],
         ];
     }
 }

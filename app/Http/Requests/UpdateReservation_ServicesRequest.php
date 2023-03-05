@@ -13,7 +13,7 @@ class UpdateReservation_ServicesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateReservation_ServicesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'numberDays' => ['nullable'],
+            'fk_Reservations'  => ['nullable'],
+            'Fk_Services'  => ['nullable'],
         ];
     }
 }
