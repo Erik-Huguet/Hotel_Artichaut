@@ -41,9 +41,9 @@ class ServicesController extends Controller
      * @param  \App\Models\Services  $services
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Services $services)
+    public function show(Services $service)
     {
-        return response()->json($services, Response::HTTP_OK);
+        return response()->json($service, Response::HTTP_OK);
     }
 
 
@@ -54,12 +54,12 @@ class ServicesController extends Controller
      * @param  \App\Models\Services  $services
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateServicesRequest $request, Services $services)
+    public function update(UpdateServicesRequest $request, Services $service)
     {
 
         $validateData = $request->validated();
-        $services->update($validateData);
-        return response()->json($services, Response::HTTP_ACCEPTED);
+        $service->update($validateData);
+        return response()->json($service, Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -68,10 +68,10 @@ class ServicesController extends Controller
      * @param  \App\Models\Services  $services
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Services $services)
+    public function destroy(Services $service)
     {
 
-        $services->delete();
-        return response()->json($services::all());
+        $service->delete();
+        return response()->json($service::all());
     }
 }

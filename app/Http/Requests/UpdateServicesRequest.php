@@ -13,7 +13,7 @@ class UpdateServicesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateServicesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['nullable'],
+            'price'=> ['nullable'],
+            'numberPerson'=> ['nullable'],
+            'numberWeek'=> ['nullable'],
         ];
     }
 }
