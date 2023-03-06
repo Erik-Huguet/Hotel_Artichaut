@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->dateTime('dateStart');
-            $table->date('dateEnd');
+            $table->dateTime('dateEnd');
             $table->integer('nb_Person');
             $table->integer('totalServices')->nullable();
             $table->foreignId('fk_Reservations_Discounts')->nullable();
