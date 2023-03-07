@@ -84,6 +84,7 @@ class AuthController extends Controller
         $remember_me = $request->has('remember_me');
 
         return response()->json([
+            'user' => $user,
             "acces_token" => $token,
             'token_type' => 'Bearer',
             "message" => 'ok logger',
@@ -98,6 +99,9 @@ class AuthController extends Controller
 //            ]);
 //        //return redirect()->to('login')
 //        }
+    }
+    public function userConnected(Request $request, User $user){
+        return $user->id === $request->id;
     }
 
     public function me(Request $request)

@@ -2,9 +2,11 @@
 
 namespace App\Policies;
 
+use App\Http\Controllers\AuthController;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Gate;
+
 
 class UserPolicy
 {
@@ -12,10 +14,9 @@ class UserPolicy
 
     public function before(User $user, $ability)
     {
-
-            return true;
-
+        return true;
     }
+
 
     /**
      * Determine whether the user can view any models.
@@ -37,7 +38,10 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-       // return true;
+        if($user->id === $model->id){
+            return true;
+        }
+
     }
 
     /**
@@ -48,7 +52,8 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //return true;
+        if($user->me())
+        return true;
     }
 
     /**
