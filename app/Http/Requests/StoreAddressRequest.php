@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRoleRequest extends FormRequest
+class StoreAddressRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize()
     {
         return true;
     }
@@ -21,10 +21,13 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules():array
+    public function rules()
     {
         return [
-            'type_role' => ['nullable'],
+            'address' => ['required', 'max:255'],
+            'postalCode' => ['required'],
+            'city' => ['required', 'max:255'],
+            'country' => ['required', 'max:255'],
         ];
     }
 }

@@ -26,6 +26,11 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             VideoSeeder::class,
             TypeChamberSeeder::class,
+            ReservationSeeder::class,
+            InvoiceSeeder::class,
+            AddressSeeder::class,
+            ServicesSeeder::class,
+            FooterSeeder::class,
 
         ]);
 
