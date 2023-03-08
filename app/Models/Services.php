@@ -11,8 +11,6 @@ class Services extends Model
     protected $fillable = [
         'name',
         'price',
-        'numberPerson',
-        'numberWeek',
     ];
     public function reservation() {
         return $this->belongsToMany(Reservation::class);

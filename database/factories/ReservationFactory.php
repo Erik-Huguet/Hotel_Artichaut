@@ -20,6 +20,7 @@ class ReservationFactory extends Factory
             'dateStart'=>fake()->date('1995-02-25'),
             'dateEnd'=>fake()->date('1995-02-28'),
             'nb_Person'=>2,
+            'nb_chamber' =>1,
             'totalServices'=>3,
         ];
     }

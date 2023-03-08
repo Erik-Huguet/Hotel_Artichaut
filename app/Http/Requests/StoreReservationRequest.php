@@ -28,7 +28,7 @@ class StoreReservationRequest extends FormRequest
             'dateStart' => ['required'],
             'dateEnd' => [ 'required'],
             'nb_Person'  => ['required', 'min:1'],
-            'nb_Chamber' => ['required'],
+            'nb_Chamber' => ['required', 'min:1'],
             'totalServices '=> ['nullable'],
         ];
     }

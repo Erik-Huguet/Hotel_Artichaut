@@ -26,8 +26,6 @@ class StoreServicesRequest extends FormRequest
         return [
             'name' => ['required', 'max:50'],
             'price' => ['required', 'min:1'],
-            'numberPerson' => ['required', 'min:1'],
-            'numberWeek' => ['required', 'min:1'],
         ];
     }
 }

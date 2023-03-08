@@ -15,6 +15,34 @@ class ServicesSeeder extends Seeder
      */
     public function run()
     {
-        Services::factory(5)->create();
+        Services::create([
+            'name' => 'Formule demie-pension',
+            'price' => 20,
+        ]);
+
+        Services::create([
+            'name' => 'Formule pension complète',
+            'price' => 35,
+        ]);
+
+        Services::create([
+            'name' => 'Formule petit déjeuner',
+            'price' => 9,
+        ]);
+
+        Services::create([
+            'name' => 'Service Pressing',
+            'price' => 30,
+        ]);
+
+        Services::create([
+            'name' => 'Télévision',
+            'price' => 10,
+        ]);
+
+        Services::create([
+            'name' => 'Wifi',
+            'price' => 25,
+        ]);
     }
 }

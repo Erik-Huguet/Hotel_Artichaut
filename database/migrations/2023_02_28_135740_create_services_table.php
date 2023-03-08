@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
-            $table->integer('numberPerson');
-            $table->integer('numberWeek');
             $table->timestamps();
         });
     }

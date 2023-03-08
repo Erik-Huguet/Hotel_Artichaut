@@ -26,8 +26,6 @@ class UpdateServicesRequest extends FormRequest
         return [
             'name' => ['nullable'],
             'price'=> ['nullable'],
-            'numberPerson'=> ['nullable'],
-            'numberWeek'=> ['nullable'],
         ];
     }
 }

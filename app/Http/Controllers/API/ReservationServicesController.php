@@ -29,8 +29,13 @@ class ReservationServicesController extends Controller
      */
     public function store(StoreReservation_ServicesRequest $request)
     {
-        Reservation_Services::created($request->validated());
-        return response()->json([Response::HTTP_CREATED]);
+        //Reservation_Services::created($request->validated());
+        //return response()->json([Response::HTTP_CREATED]);
+        $validateData = $request->validated();
+        $newServiceResa = new Reservation_Services($validateData);
+        $newServiceResa->save();
+        return response()->json($newServiceResa, Response::HTTP_CREATED);
+
     }
 
     /**
