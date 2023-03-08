@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('dateStart');
             $table->dateTime('dateEnd');
             $table->integer('nb_Person');
+            $table->integer('nb_Chamber');
             $table->integer('totalServices')->nullable();
             $table->foreignId('fk_Reservations_Discounts')->nullable();
             $table->foreignId('fk_Reservation_User')->nullable();

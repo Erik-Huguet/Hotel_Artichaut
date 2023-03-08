@@ -12,6 +12,7 @@ class Reservation extends Model
         'dateStart',
         'dateEnd',
         'nb_Person',
+        'nb_Chamber',
         'totalServices',
         'fk_Reservations_Discounts ',
         'fk_Chambers',

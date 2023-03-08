@@ -27,6 +27,7 @@ class UpdateReservationRequest extends FormRequest
             'dateStart' => ['nullable'],
             'dateEnd' => [ 'nullable'],
             'nb_Person'  => ['nullable'],
+            'nb_Chamber' => ['nullable'],
             'totalServices '=> ['nullable'],
         ];
     }
