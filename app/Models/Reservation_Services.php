@@ -10,12 +10,20 @@ class Reservation_Services extends Model
     use HasFactory;
 
     protected $fillable =[
+        'fk_Reservations',
+        'fk_Services',
         'numberDays',
         'numberPerson',
         'numberWeek',
-        'fk_Reservations',
-        'fk_Services',
     ];
 
+
+    public function service() {
+        return $this->belongsToMany('app/Models/Services');
+    }
+
+    public function reservation() {
+        return $this->belongsToMany('app/Models/Reservation');
+    }
 }
 

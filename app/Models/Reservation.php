@@ -14,7 +14,7 @@ class Reservation extends Model
         'nb_Person',
         'nb_Chamber',
         'nb_TotalServices',
-        'fk_Reservations_Discounts ',
+        'fk_Reservations_Discounts',
         ];
 
     /**
