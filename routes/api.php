@@ -59,5 +59,11 @@ Route::middleware('auth:sanctum')->group( function() {
 });
 
 
-
-
+//
+//Route::get('/test-contact', function () {
+//    return new App\Mail\Contact([
+//        'nom' => 'Durand',
+//        'email' => 'durand@chezlui.com',
+//        'message' => 'Je voulais vous dire que votre site est magnifique !'
+//    ]);
+//});
