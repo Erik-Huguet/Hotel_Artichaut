@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
     Route::apiResource('discounts', DiscountController::class);
-    Route::apiResource('news', InfoNewsController::class);
+    Route::apiResource('infoNews', InfoNewsController::class);
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
     Route::apiResource('type_chambers', TypeChamberController::class);
