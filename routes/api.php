@@ -11,6 +11,7 @@ use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\VideoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,11 +38,13 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
+    Route::apiResource('bar', TestController::class);
 
 });
 
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/bar', '\App\Http\Controllers\TestController@bar',);
 //Cette méthode à pour objecctif de générer et de renvoyer le token lorsque le mdp et le mail match
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum', 'web');
