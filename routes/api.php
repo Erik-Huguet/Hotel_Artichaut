@@ -8,7 +8,7 @@ use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
 use App\Http\Controllers\API\FooterController;
 use App\Http\Controllers\API\InvoiceController;
-use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\InfoNewsController;
 use App\Http\Controllers\API\PictureController;
 use App\Http\Controllers\API\ReservationController;
 use App\Http\Controllers\API\ReservationServicesController;
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
     Route::apiResource('discounts', DiscountController::class);
-    Route::apiResource('news', NewsController::class);
+    Route::apiResource('news', InfoNewsController::class);
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
     Route::apiResource('type_chambers', TypeChamberController::class);

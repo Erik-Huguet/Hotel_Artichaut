@@ -23,7 +23,7 @@ class Picture extends Model
      */
     public function news()
     {
-        return $this->hasMany(News::class, 'fk_Pictures_News');
+        return $this->hasMany(InfoNews::class, 'fk_Pictures_News');
     }
 
     /**

@@ -94,7 +94,7 @@ class User extends Authenticatable
      */
     public function news()
     {
-        return $this->hasMany(News::class, 'fk_Users_News');
+        return $this->hasMany(InfoNews::class, 'fk_Users_News');
     }
 
     /**
