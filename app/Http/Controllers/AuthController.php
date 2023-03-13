@@ -87,6 +87,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             "message" => 'ok logger',
             "remember_token" => $remember_me,
+            "user"=>$user,
         ]);
 //        }else{
 //            $token = $user->tokens()->first();
