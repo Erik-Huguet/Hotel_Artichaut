@@ -36,7 +36,7 @@ Route::group(['prefix' => 'v1'], function() {
     // Route::apiResource('advantages', AdvantageController::class);
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
-    Route::apiResource('discounts', DiscountController::class);
+
     Route::apiResource('news', NewsController::class);
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
-    Route::apiResource('reservation', ReservationController::class);
+
     Route::apiResource('invoice', InvoiceController::class);
     Route::apiResource('address', AddressController::class);
     Route::apiResource('services', ServicesController::class);
@@ -69,7 +69,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::delete('/users',[UserController::class, "destroy"]);
 
 Route::middleware('auth:sanctum')->group( function() {
-
+    Route::apiResource('discounts', DiscountController::class);
+    Route::apiResource('/Reservation', ReservationController::class);
     Route::apiResource("/advantages", AdvantageController::class);
 });
 

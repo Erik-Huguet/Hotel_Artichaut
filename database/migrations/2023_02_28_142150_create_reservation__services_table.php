@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('fk_Reservations');
             $table->foreignId('fk_Services');
-            $table->integer('numberDays');
-            $table->integer('numberPerson');
-            $table->integer('numberWeek');
+            $table->integer('numberDays')->nullable();
+            $table->integer('numberPerson')->nullable();
+            $table->integer('numberWeek')->nullable();
             $table->timestamps();
         });
     }

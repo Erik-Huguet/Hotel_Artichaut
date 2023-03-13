@@ -25,8 +25,8 @@ class StoreReservation_ServicesRequest extends FormRequest
     {
         return [
             'numberDays' => ['nullable'],
-            'numberPerson'=> ['nullable'],
-            'numberWeek'=> ['nullable'],
+            'numberPerson' => ['nullable'],
+            'numberWeek' => ['nullable'],
             'fk_Reservations'  => ['required'],
             'fk_Services'  => ['required'],
         ];
