@@ -41,7 +41,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
     Route::apiResource('type_chambers', TypeChamberController::class);
-    Route::apiResource('users', UserController::class);
+    Route::apiResource('users', UserController::class)->except(['destroy', 'update', ]);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
     Route::apiResource('reservation', ReservationController::class);
@@ -70,6 +70,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 Route::middleware('auth:sanctum')->group( function() {
     Route::apiResource('/Reservation', ReservationController::class);
+    Route::put('users', [UserController::class, 'update']);
     Route::delete('/users',[UserController::class, "destroy"]);
 });
 
