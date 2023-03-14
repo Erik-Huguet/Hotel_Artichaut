@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\News;
+use App\Models\InfoNews;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class NewsPolicy
+class InfoNewsPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class NewsPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, News $news)
+    public function view(User $user, InfoNews $news)
     {
         //
     }
@@ -48,10 +48,10 @@ class NewsPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, News $news)
+    public function update(User $user, InfoNews $news)
     {
         //
     }
@@ -60,10 +60,10 @@ class NewsPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, News $news)
+    public function delete(User $user, InfoNews $news)
     {
         //
     }
@@ -72,10 +72,10 @@ class NewsPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, News $news)
+    public function restore(User $user, InfoNews $news)
     {
         //
     }
@@ -84,10 +84,10 @@ class NewsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, News $news)
+    public function forceDelete(User $user, InfoNews $news)
     {
         //
     }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RoleSeeder::class,
             DiscountSeeder::class,
-            NewsSeeder::class,
+            InfoNewsSeeder::class,
             PictureSeeder::class,
             AdvantageSeeder::class,
             ChamberSeeder::class,

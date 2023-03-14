@@ -87,7 +87,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
             "message" => 'ok logger',
             "remember_token" => $remember_me,
-            "user" => $user,
+            "user"=>$user,
         ]);
 //        }else{
 //            $token = $user->tokens()->first();
@@ -111,6 +111,8 @@ class AuthController extends Controller
      */
     public function logout(Request $request): \Illuminate\Http\JsonResponse
     {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         auth('sanctum')->user()->tokens()->delete();
         return response()->json([Response::HTTP_OK, 'message' => 'token deleted']);
     }

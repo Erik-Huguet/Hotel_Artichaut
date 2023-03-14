@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateNewsRequest extends FormRequest
+class StoreInfoNewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class UpdateNewsRequest extends FormRequest
             'describe_fr_new' => ['required'],
             'title_ang_new' => ['required', 'max:50'],
             'describe_ang_new' => ['required'],
-            'icon_new' => ['required', 'url' ],
+            'icon_new' => ['required', 'url'],
             'position_icon_new' => ['required'],
             'fk_Users_News' => ['required'] ,
         ];

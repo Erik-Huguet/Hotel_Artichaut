@@ -24,11 +24,11 @@ class StoreReservation_ServicesRequest extends FormRequest
     public function rules()
     {
         return [
+            'fk_Reservations'  => ['nullable'],
+            'fk_Services' => ['nullable'],
             'numberDays' => ['nullable'],
             'numberPerson' => ['nullable'],
             'numberWeek' => ['nullable'],
-            'fk_Reservations'  => ['required'],
-            'fk_Services'  => ['required'],
         ];
     }
 }
