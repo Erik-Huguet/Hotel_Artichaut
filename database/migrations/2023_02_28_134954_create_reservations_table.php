@@ -13,19 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('info_news', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr_new');
-            $table->longText( 'describe_fr_new');
-            $table->string('title_ang_new');
-            $table->longText('describe_ang_new');
-            $table->string('icon_new');
-            $table->integer('position_icon_new');
+            $table->dateTime('dateStart');
+            $table->dateTime('dateEnd');
+            $table->integer('nb_Person');
+            $table->integer('nb_Chamber');
+            $table->integer('nb_TotalServices')->nullable();
+            $table->foreignId('fk_Reservations_Discounts')->nullable();
             $table->timestamps();
-            $table->foreignId('fk_Users_News');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_news');
+        Schema::dropIfExists('reservations');
     }
 };

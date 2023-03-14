@@ -2,20 +2,13 @@
 
 namespace App\Policies;
 
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Gate;
 
-class UserPolicy
+class ReservationPolicy
 {
     use HandlesAuthorization;
-
-    public function before(User $user, $ability)
-    {
-
-            return true;
-
-    }
 
     /**
      * Determine whether the user can view any models.
@@ -25,19 +18,19 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return false;
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Reservation $reservation)
     {
-        return $user->id === $model->me;
+        //
     }
 
     /**
@@ -48,60 +41,54 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //return true;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model)
+    public function update(User $user, Reservation $reservation)
     {
-        //return $user->id === $model->id ;
-       // return true;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, Reservation $reservation)
     {
-        //return true;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Reservation $reservation)
     {
-        //return true;
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Reservation $reservation)
     {
-       // return true;
-    }
-
-    public function changeRole(User $user)
-    {
-        return $user->isAdmin();
+        //
     }
 }

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreNewsRequest;
-use App\Http\Requests\UpdateNewsRequest;
-use App\Models\News;
+use App\Http\Requests\StoreInfoNewsRequest;
+use App\Http\Requests\UpdateInfoNewsRequest;
+use App\Models\InfoNews;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class NewsController extends Controller
+class InfoNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +18,20 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = InfoNews::all();
         return response()->json($news);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreNewsRequest  $request
+     * @param  \App\Http\Requests\StoreInfoNewsRequest  $request
      * @return \Illuminate\Http\jsonResponse
      */
-    public function store(StoreNewsRequest $request)
+    public function store(StoreInfoNewsRequest $request)
     {
         $validateData = $request->validated();
-        $newNews = new News($validateData);
+        $newNews = new InfoNews($validateData);
         $newNews->save();
         return response()->json($newNews, Response::HTTP_CREATED);
     }
@@ -39,10 +39,10 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function show(News $news)
+    public function show(InfoNews $news)
     {
         return response()->json($news, Response::HTTP_OK);
     }
@@ -50,11 +50,11 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateNewsRequest  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Http\Requests\UpdateInfoNewsRequest  $request
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function update(UpdateNewsRequest $request, News $news)
+    public function update(UpdateInfoNewsRequest $request, InfoNews $news)
     {
         $validateData = $request->validated();
         $news->update($validateData);
@@ -64,10 +64,10 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\InfoNews  $news
      * @return \Illuminate\Http\jsonResponse
      */
-    public function destroy(News $news)
+    public function destroy(InfoNews $news)
     {
         $news->delete();
         return response()->json($news::all());

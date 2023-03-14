@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('info_news', function (Blueprint $table) {
+        Schema::create('chambers__reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr_new');
-            $table->longText( 'describe_fr_new');
-            $table->string('title_ang_new');
-            $table->longText('describe_ang_new');
-            $table->string('icon_new');
-            $table->integer('position_icon_new');
+            $table->foreignId('fk_Reservations');
+            $table->foreignId('fk_Chambers');
             $table->timestamps();
-            $table->foreignId('fk_Users_News');
         });
     }
 
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_news');
+        Schema::dropIfExists('chambers__reservations');
     }
 };

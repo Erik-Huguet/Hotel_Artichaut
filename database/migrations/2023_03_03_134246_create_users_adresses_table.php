@@ -13,19 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('info_news', function (Blueprint $table) {
+        Schema::create('users_adresses', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr_new');
-            $table->longText( 'describe_fr_new');
-            $table->string('title_ang_new');
-            $table->longText('describe_ang_new');
-            $table->string('icon_new');
-            $table->integer('position_icon_new');
+            $table->foreignId('fk_User');
+            $table->foreignId('fk_Address');
             $table->timestamps();
-            $table->foreignId('fk_Users_News');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_news');
+        Schema::dropIfExists('users_adresses');
     }
 };

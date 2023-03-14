@@ -1,17 +1,24 @@
 <?php
 
+use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\AdvantageController;
 use App\Http\Controllers\API\ChamberController;
+use App\Http\Controllers\API\ChambersReservationController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\DiscountController;
-use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\FooterController;
+use App\Http\Controllers\API\InvoiceController;
+use App\Http\Controllers\API\InfoNewsController;
 use App\Http\Controllers\API\PictureController;
+use App\Http\Controllers\API\ReservationController;
+use App\Http\Controllers\API\ReservationServicesController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TypeChamberController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\UsersAdressController;
 use App\Http\Controllers\API\VideoController;
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,13 +37,21 @@ Route::group(['prefix' => 'v1'], function() {
     Route::apiResource('chambers', ChamberController::class);
     Route::apiResource('comments', CommentController::class);
     Route::apiResource('discounts', DiscountController::class);
-    Route::apiResource('news', NewsController::class);
+    Route::apiResource('infoNews', InfoNewsController::class);
     Route::apiResource('pictures', PictureController::class);
     Route::apiResource('roles', RoleController::class);
     Route::apiResource('type_chambers', TypeChamberController::class);
-    Route::apiResource('users', UserController::class);
+    Route::apiResource('users', UserController::class)->except(['destroy', 'update', ]);
     Route::apiResource('videos', VideoController::class);
     Route::apiResource('logout', AuthController::class);
+    Route::apiResource('reservation', ReservationController::class);
+    Route::apiResource('invoice', InvoiceController::class);
+    Route::apiResource('address', AddressController::class);
+    Route::apiResource('services', ServicesController::class);
+    Route::apiResource('footer', FooterController::class);
+    Route::apiResource('reservationService', ReservationServicesController::class);
+    Route::apiResource('reservationChamber', ChambersReservationController::class);
+    Route::apiResource('addressUser', UsersAdressController::class);
 
 });
 
@@ -51,11 +66,12 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 //    Route::apiResource("/advantages", AdvantageController::class);
 //});
 
-Route::delete('/users',[UserController::class, "destroy"]);
+
 
 Route::middleware('auth:sanctum')->group( function() {
-
-    Route::apiResource("/advantages", AdvantageController::class);
+    Route::apiResource('/Reservation', ReservationController::class);
+    Route::put('users', [UserController::class, 'update']);
+    Route::delete('/users',[UserController::class, "destroy"]);
 });
 
 

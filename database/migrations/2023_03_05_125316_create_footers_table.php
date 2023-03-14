@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('info_news', function (Blueprint $table) {
+        Schema::create('footers', function (Blueprint $table) {
             $table->id();
-            $table->string('title_fr_new');
-            $table->longText( 'describe_fr_new');
-            $table->string('title_ang_new');
-            $table->longText('describe_ang_new');
-            $table->string('icon_new');
-            $table->integer('position_icon_new');
+            $table->string('addressHotel');
+            $table->string('NomHotel');
+            $table->string('logoHotel');
+            $table->string('emailHotel');
+            $table->string('telephoneHotel');
+            $table->string('urlFooter');
+            $table->foreignId('fk_Footer_Users');
             $table->timestamps();
-            $table->foreignId('fk_Users_News');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info_news');
+        Schema::dropIfExists('footers');
     }
 };

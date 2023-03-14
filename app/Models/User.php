@@ -7,7 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Request;
 use Laravel\Sanctum\HasApiTokens;
@@ -95,7 +94,7 @@ class User extends Authenticatable
      */
     public function news()
     {
-        return $this->hasMany(News::class, 'fk_Users_News');
+        return $this->hasMany(InfoNews::class, 'fk_Users_News');
     }
 
     /**
@@ -114,4 +113,23 @@ class User extends Authenticatable
         return $this->hasMany(discount::class, 'fk_Users_Discounts');
     }
 
+
+    //////A vérifier
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reservation(){
+        return $this->belongsToMany('app/Models/Reservation');
+    }
+
+
+    public function address()
+    {
+        return $this->belongsToMany(Address::class);
+    }
+
+    public function footer()
+    {
+        return $this->hasMany(Footer::class);
+    }
 }
