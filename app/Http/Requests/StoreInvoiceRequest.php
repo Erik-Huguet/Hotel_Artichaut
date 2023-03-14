@@ -24,9 +24,10 @@ class StoreInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-
             'price' => ['required'],
             'number_invoices' => ['required'],
+            'fk_Reservation' => ['required'],
+            'fk_User' => ['required'],
         ];
     }
 }
