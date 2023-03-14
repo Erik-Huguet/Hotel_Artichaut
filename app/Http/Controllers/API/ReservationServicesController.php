@@ -27,7 +27,7 @@ class ReservationServicesController extends Controller
      * @param  \App\Http\Requests\StoreReservation_ServicesRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(StoreReservation_ServicesRequest $request)
+    public function store(StoreReservation_ServicesRequest $request): \Illuminate\Http\JsonResponse
     {
         /*Reservation_Services::created($request->validated());
         return response()->json(Reservation_Services::class->reservationservice(), [Response::HTTP_CREATED]);*/

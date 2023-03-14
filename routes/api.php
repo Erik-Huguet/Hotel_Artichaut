@@ -66,11 +66,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 //    Route::apiResource("/advantages", AdvantageController::class);
 //});
 
-Route::delete('/users',[UserController::class, "destroy"]);
+
 
 Route::middleware('auth:sanctum')->group( function() {
-
-    Route::apiResource("/advantages", AdvantageController::class);
+    Route::apiResource('/Reservation', ReservationController::class);
+    Route::delete('/users',[UserController::class, "destroy"]);
 });
 
 

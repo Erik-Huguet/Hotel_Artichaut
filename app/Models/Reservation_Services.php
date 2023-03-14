@@ -16,6 +16,14 @@ class Reservation_Services extends Model
         'numberPerson',
         'numberWeek',
     ];
+    public function reservation(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Reservation::class, 'reservations');    }
+
+
+    public function service(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Services::class, 'services');    }
 
 
     public function service() {
